@@ -1,7 +1,7 @@
 import browser from 'browser-detect';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
-import { ActivationEnd, Router, NavigationEnd } from '@angular/router';
+import { ActivationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Store, select } from '@ngrx/store';
 import { Subject } from 'rxjs';
@@ -28,7 +28,7 @@ import {
 } from './settings';
 
 @Component({
-  selector: 'anms-root',
+  selector: 'slo-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [routeAnimations]
@@ -42,16 +42,14 @@ export class AppComponent implements OnInit, OnDestroy {
   envName = env.envName;
   version = env.versions.app;
   year = new Date().getFullYear();
-  logo = require('../assets/logo.png');
+  logo = require('../assets/logo.jpg');
   languages = ['en', 'de', 'sk', 'fr'];
   navigation = [
-    { link: 'about', label: 'anms.menu.about' },
-    { link: 'features', label: 'anms.menu.features' },
-    { link: 'examples', label: 'anms.menu.examples' }
+    { link: 'about', label: 'slo.menu.about' }
   ];
   navigationSideMenu = [
     ...this.navigation,
-    { link: 'settings', label: 'anms.menu.settings' }
+    { link: 'settings', label: 'slo.menu.settings' }
   ];
 
   settings: SettingsState;
@@ -65,11 +63,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private animationService: AnimationsService,
     private translate: TranslateService
   ) {}
-
-  private static trackPageView(event: NavigationEnd) {
-    (<any>window).ga('set', 'page', event.urlAfterRedirects);
-    (<any>window).ga('send', 'pageview');
-  }
 
   private static isIEorEdge() {
     return ['ie', 'edge'].includes(browser().name);
@@ -156,10 +149,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.events.pipe(takeUntil(this.unsubscribe$)).subscribe(event => {
       if (event instanceof ActivationEnd) {
         this.titleService.setTitle(event.snapshot);
-      }
-
-      if (event instanceof NavigationEnd) {
-        AppComponent.trackPageView(event);
       }
     });
   }

@@ -3,11 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-ngrx-material-starter": {
+    "slo-county-starter": {
       "root": "",
       "sourceRoot": "/src",
       "projectType": "application",
-      "prefix": "anms",
+      "prefix": "slo",
       "schematics": {},
       "architect": {
         "build": {
@@ -90,18 +90,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-ngrx-material-starter:build"
+            "browserTarget": "slo-county-starter:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-ngrx-material-starter:build:production"
+              "browserTarget": "slo-county-starter:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-ngrx-material-starter:build"
+            "browserTarget": "slo-county-starter:build"
           }
         },
         "test": {
@@ -154,7 +154,7 @@
         }
       }
     },
-    "angular-ngrx-material-starter-e2e": {
+    "slo-county-starter-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -162,7 +162,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-ngrx-material-starter:serve"
+            "devServerTarget": "slo-county-starter:serve"
           }
         },
         "lint": {
@@ -177,5 +177,5 @@
       }
     }
   },
-  "defaultProject": "angular-ngrx-material-starter"
+  "defaultProject": "slo-county-starter"
 }

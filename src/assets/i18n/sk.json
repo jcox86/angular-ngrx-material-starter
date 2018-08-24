@@ -1,71 +1,71 @@
 {
-  "anms.title": "Angular NgRx Material Štartér",
-  "anms.title.short": "Angular Štartér",
-  "anms.header.github": "Github Repotitár Projektu",
-  "anms.footer.changelog": "Zobraziť list zmien",
-  "anms.menu.about": "Domov",
-  "anms.menu.features": "Vlastnosti",
-  "anms.menu.examples": "Príklady",
-  "anms.menu.settings": "Nastavenia",
-  "anms.menu.login": "Prihlásenie",
-  "anms.menu.logout": "Odhlásenie",
-  "anms.about.change-theme": "Zmeniť Tému",
-  "anms.about.check-blogs": "alebo si pozri blogy o",
-  "anms.about.get-started": "Ako začať",
-  "anms.about.get-notified": "Upozornenia na nové vydania",
-  "anms.about.get-notified.follow": "Sleduj",
-  "anms.about.get-notified.description":
+  "slo.title": "Angular NgRx Material Štartér",
+  "slo.title.short": "Angular Štartér",
+  "slo.header.github": "Github Repotitár Projektu",
+  "slo.footer.changelog": "Zobraziť list zmien",
+  "slo.menu.about": "Domov",
+  "slo.menu.features": "Vlastnosti",
+  "slo.menu.examples": "Príklady",
+  "slo.menu.settings": "Nastavenia",
+  "slo.menu.login": "Prihlásenie",
+  "slo.menu.logout": "Odhlásenie",
+  "slo.about.change-theme": "Zmeniť Tému",
+  "slo.about.check-blogs": "alebo si pozri blogy o",
+  "slo.about.get-started": "Ako začať",
+  "slo.about.get-notified": "Upozornenia na nové vydania",
+  "slo.about.get-notified.follow": "Sleduj",
+  "slo.about.get-notified.description":
     ", Twitter bota ktorý ti pomôže zostať aktuálnym s vydaniami populárnych frontend frameworkov a knižníc!",
-  "anms.about.contributors": "Prispievatelia",
-  "anms.about.contributors.description1":
+  "slo.about.contributors": "Prispievatelia",
+  "slo.about.contributors.description1":
     "Chceš začať prispievať do open source s Angularom?",
-  "anms.about.contributors.description2":
+  "slo.about.contributors.description2":
     "Zanechaj svoju stopu a pridaj sa do rastúceho tímu prispievateľov!",
-  "anms.about.contributors.description3": "Začni tým že si pozrieš ",
-  "anms.about.contributors.description4": " a ",
-  "anms.about.contributors.issues": "list otvorených problémov ",
-  "anms.about.contributors.guide": "prispievateľskú príručku",
-  "anms.features.title": "Vlastnosti",
-  "anms.features.documentation": "Dok.",
-  "anms.features.guide": "Návod",
-  "anms.features.angular": "Moderný výkonný framework",
-  "anms.features.angular-material":
+  "slo.about.contributors.description3": "Začni tým že si pozrieš ",
+  "slo.about.contributors.description4": " a ",
+  "slo.about.contributors.issues": "list otvorených problémov ",
+  "slo.about.contributors.guide": "prispievateľskú príručku",
+  "slo.features.title": "Vlastnosti",
+  "slo.features.documentation": "Dok.",
+  "slo.features.guide": "Návod",
+  "slo.features.angular": "Moderný výkonný framework",
+  "slo.features.angular-material":
     "Knižnica komponentov implementujúcich Material Dizajn",
-  "anms.features.angular-cli": "Rozhranie príkazového riadka pre Angular",
-  "anms.features.ngrx": "Jednosmerný tok dát s pomocou RxJS Observables",
-  "anms.features.rxjs":
+  "slo.features.angular-cli": "Rozhranie príkazového riadka pre Angular",
+  "slo.features.ngrx": "Jednosmerný tok dát s pomocou RxJS Observables",
+  "slo.features.rxjs":
     "Reaktívne programovanie s asynchrónymi kolekciami s pomocou Observables",
-  "anms.features.ngxtranslate":
+  "slo.features.ngxtranslate":
     "Knižnica pre internacionalizáciu Angular applikácií",
-  "anms.features.bootstrap":
+  "slo.features.bootstrap":
     "Responzívny dizajn od ostrielanej, svetoznámej UI knižnice",
-  "anms.features.typescript":
+  "slo.features.typescript":
     "Vynikajúca podpora developerov, automatické dokončovanie kódu, refaktorovanie a menej chýb",
-  "anms.features.fontawesome":
+  "slo.features.fontawesome":
     "Ľahko použiteľné vektorové ikony a sociálne logá",
-  "anms.features.themes":
+  "slo.features.themes":
     "Flexibilná podpora tém pre vstavané a vlastné komponenty",
-  "anms.features.themes.title": "Témy",
-  "anms.features.lazyloading":
+  "slo.features.themes.title": "Témy",
+  "slo.features.lazyloading":
     "Rýchlejší štartovací čas s lenivým nahrávaním modulov",
-  "anms.features.lazyloading.title": "Lenivé nahrávanie",
-  "anms.settings.title": "Nastavenia",
-  "anms.settings.general": "Hlavné",
-  "anms.settings.general.placeholder": "Jazyk",
-  "anms.settings.general.language.en": "Angličtina",
-  "anms.settings.general.language.sk": "Slovenčina",
-  "anms.settings.general.language.de": "Nemčina",
-  "anms.settings.general.language.fr": "Francúzsky",
-  "anms.settings.themes": "Témy",
-  "anms.settings.themes.placeholder": "Téma",
-  "anms.settings.themes.blue": "Modrá",
-  "anms.settings.themes.light": "Svetlá",
-  "anms.settings.themes.nature": "Prírodná",
-  "anms.settings.themes.dark": "Tmavá",
-  "anms.settings.themes.night-mode":
+  "slo.features.lazyloading.title": "Lenivé nahrávanie",
+  "slo.settings.title": "Nastavenia",
+  "slo.settings.general": "Hlavné",
+  "slo.settings.general.placeholder": "Jazyk",
+  "slo.settings.general.language.en": "Angličtina",
+  "slo.settings.general.language.sk": "Slovenčina",
+  "slo.settings.general.language.de": "Nemčina",
+  "slo.settings.general.language.fr": "Francúzsky",
+  "slo.settings.themes": "Témy",
+  "slo.settings.themes.placeholder": "Téma",
+  "slo.settings.themes.blue": "Modrá",
+  "slo.settings.themes.light": "Svetlá",
+  "slo.settings.themes.nature": "Prírodná",
+  "slo.settings.themes.dark": "Tmavá",
+  "slo.settings.themes.night-mode":
     "Automatický nočný režim (od 21:00 do 7:00)",
-  "anms.settings.animations": "Animácie",
-  "anms.settings.animations.page": "Animácia celej stránky pri navigácii",
-  "anms.settings.animations.elements":
+  "slo.settings.animations": "Animácie",
+  "slo.settings.animations.page": "Animácia celej stránky pri navigácii",
+  "slo.settings.animations.elements":
     "Animácia elementov stránky pri navigácii"
 }

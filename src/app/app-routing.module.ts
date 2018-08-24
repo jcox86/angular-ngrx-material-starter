@@ -12,11 +12,7 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsContainerComponent,
-    data: { title: 'anms.menu.settings' }
-  },
-  {
-    path: 'examples',
-    loadChildren: 'app/examples/examples.module#ExamplesModule'
+    data: { title: 'slo.menu.settings' }
   },
   {
     path: '**',
