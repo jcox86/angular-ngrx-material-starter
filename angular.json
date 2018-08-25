@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "slo-county-starter": {
+    "slo-starter": {
       "root": "",
       "sourceRoot": "/src",
       "projectType": "application",
@@ -90,18 +90,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "slo-county-starter:build"
+            "browserTarget": "slo-starter:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "slo-county-starter:build:production"
+              "browserTarget": "slo-starter:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "slo-county-starter:build"
+            "browserTarget": "slo-starter:build"
           }
         },
         "test": {
@@ -154,7 +154,7 @@
         }
       }
     },
-    "slo-county-starter-e2e": {
+    "slo-starter-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -162,7 +162,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "slo-county-starter:serve"
+            "devServerTarget": "slo-starter:serve"
           }
         },
         "lint": {
@@ -177,5 +177,5 @@
       }
     }
   },
-  "defaultProject": "slo-county-starter"
+  "defaultProject": "slo-starter"
 }

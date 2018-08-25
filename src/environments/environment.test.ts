@@ -1,7 +1,7 @@
 const packageJson = require('../../package.json');
 
 export const environment = {
-  appName: 'SLO County Starter',
+  appName: 'SLO  Starter',
   envName: 'TEST',
   production: false,
   test: true,

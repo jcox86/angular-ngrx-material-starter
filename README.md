@@ -1,4 +1,4 @@
-# SLO County Starter 
+# SLO  Starter 
 
 ## Getting started
 ```bash
@@ -22,8 +22,8 @@ When using this starter project to build your own app you might consider some of
   * rename project in `package.json` `name` property and set appropriate version (eg `0.0.0` or `1.0.0`)
   * change project name and description tags in `src/index.html` to appropriate versions
   * rename app in `src/environments/` files (will be shown in browser tab)
-  * use `search and replace` to change `slo-county-starter` to `<your-app-name>`
-  * use `search and replace` to change `SLO County Starter` to `Your App Name`
+  * use `search and replace` to change `slo-starter` to `<your-app-name>`
+  * use `search and replace` to change `SLO  Starter` to `Your App Name`
   * replace logo in `src/assets` folder ( currently 128 x 128 pixel `png` file )
   * adjust colors in `src/themes/default-theme.scss`
 

@@ -8,7 +8,7 @@ describe('About Page', () => {
 
   it('should display main heading', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('SLO County Starter');
+    expect(page.getParagraphText()).toEqual('SLO  Starter');
   });
 
   it('should display "Geting Started" section', () => {
