@@ -13,13 +13,20 @@ mat-sidenav-container {
       margin: 0 10px 0 0;
     }
 
+    .fill-middle-space {
+      /* This fills the remaining space, by using flexbox. 
+         Every toolbar row uses a flexbox row layout. */
+      flex: 1 1 auto;
+    }
+
     mat-icon {
       font-size: 24px;
     }
 
     .branding {
       cursor: pointer;
-      padding-top: 4px;
+      padding-left: 8px;
+      padding-right: 24px;
 
       &.center {
         text-align: center;
@@ -35,11 +42,12 @@ mat-sidenav-container {
 
     .sign-in-button {
       line-height: 35px;
-      margin-right: 10px;
+      margin-right: 8px;
+      margin-left: 4px;
     }
 
-    .spacer {
-      flex: 1 1 auto;
+    .shadow {
+      text-shadow: 2px 2px 2px #000;
     }
 
     mat-select {
@@ -84,56 +92,6 @@ mat-sidenav-container {
 
       .row {
         padding: 10px 0;
-
-        .links {
-          a {
-            transition: padding 0.5s;
-            display: inline-block;
-            padding: 20px 5px;
-
-            &:hover {
-              text-decoration: none;
-            }
-
-            mat-icon {
-              font-size: 30px;
-              width: 35px;
-            }
-
-            span {
-              display: inline-block;
-              width: 75px;
-              padding: 0 0 0 3px;
-              overflow: hidden;
-              text-align: left;
-              white-space: nowrap;
-              transition: width 0.5s;
-            }
-          }
-
-          @media (min-width: map-get($grid-breakpoints, lg)) {
-            a {
-              padding: 20px 10px;
-            }
-          }
-
-          @media (max-width: map-get($grid-breakpoints, md)) {
-            a {
-              padding: 20px;
-
-              span {
-                width: 0;
-                padding: 0;
-              }
-            }
-          }
-
-          @media (max-width: map-get($grid-breakpoints, sm)) {
-            a {
-              padding: 20px 5px;
-            }
-          }
-        }
 
         @media (min-width: map-get($grid-breakpoints, sm)) {
           .signature {

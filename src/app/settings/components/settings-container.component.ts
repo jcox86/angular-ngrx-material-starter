@@ -6,8 +6,6 @@ import { takeUntil } from 'rxjs/operators';
 import {
   ActionSettingsChangeAnimationsElements,
   ActionSettingsChangeAnimationsPage,
-  ActionSettingsChangeAutoNightMode,
-  ActionSettingsChangeLanguage,
   ActionSettingsChangeTheme,
   ActionSettingsPersist
 } from '../settings.actions';
@@ -30,13 +28,6 @@ export class SettingsContainerComponent implements OnInit, OnDestroy {
     { value: 'BLACK-THEME', label: 'dark' }
   ];
 
-  languages = [
-    { value: 'en', label: 'en' },
-    { value: 'de', label: 'de' },
-    { value: 'sk', label: 'sk' },
-    { value: 'fr', label: 'fr' }
-  ];
-
   constructor(private store: Store<{}>) {
     store
       .pipe(select(selectSettings), takeUntil(this.unsubscribe$))
@@ -50,20 +41,8 @@ export class SettingsContainerComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  onLanguageSelect({ value: language }) {
-    this.store.dispatch(new ActionSettingsChangeLanguage({ language }));
-    this.store.dispatch(new ActionSettingsPersist({ settings: this.settings }));
-  }
-
   onThemeSelect({ value: theme }) {
     this.store.dispatch(new ActionSettingsChangeTheme({ theme }));
-    this.store.dispatch(new ActionSettingsPersist({ settings: this.settings }));
-  }
-
-  onAutoNightModeToggle({ checked: autoNightMode }) {
-    this.store.dispatch(
-      new ActionSettingsChangeAutoNightMode({ autoNightMode })
-    );
     this.store.dispatch(new ActionSettingsPersist({ settings: this.settings }));
   }
 

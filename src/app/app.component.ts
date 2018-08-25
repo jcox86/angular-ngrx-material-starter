@@ -19,11 +19,8 @@ import {
 import { environment as env } from '@env/environment';
 
 import {
-  NIGHT_MODE_THEME,
   selectSettings,
   SettingsState,
-  ActionSettingsPersist,
-  ActionSettingsChangeLanguage,
   ActionSettingsChangeAnimationsPageDisabled
 } from './settings';
 
@@ -42,8 +39,8 @@ export class AppComponent implements OnInit, OnDestroy {
   envName = env.envName;
   version = env.versions.app;
   year = new Date().getFullYear();
-  logo = require('../assets/logo.jpg');
-  languages = ['en', 'de', 'sk', 'fr'];
+
+  // TODO: Pull out into navigation component
   navigation = [
     { link: 'about', label: 'slo.menu.about' }
   ];
@@ -88,11 +85,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.store.dispatch(new ActionAuthLogout());
   }
 
-  onLanguageSelect({ value: language }) {
-    this.store.dispatch(new ActionSettingsChangeLanguage({ language }));
-    this.store.dispatch(new ActionSettingsPersist({ settings: this.settings }));
-  }
-
   private subscribeToIsAuthenticated() {
     this.store
       .pipe(select(selectAuth), takeUntil(this.unsubscribe$))
@@ -121,17 +113,11 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private setTheme(settings: SettingsState) {
-    const { theme, autoNightMode } = settings;
-    const hours = new Date().getHours();
-    const effectiveTheme = (autoNightMode && (hours >= 20 || hours <= 6)
-      ? NIGHT_MODE_THEME
-      : theme
-    ).toLowerCase();
+    const { theme } = settings;
+    const effectiveTheme = theme.toLowerCase();
     this.componentCssClass = effectiveTheme;
     const classList = this.overlayContainer.getContainerElement().classList;
-    const toRemove = Array.from(classList).filter((item: string) =>
-      item.includes('-theme')
-    );
+    const toRemove = Array.from(classList).filter((item: string) => item.includes('-theme'));
     if (toRemove.length) {
       classList.remove(...toRemove);
     }
