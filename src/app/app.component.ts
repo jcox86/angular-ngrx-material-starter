@@ -1,28 +1,34 @@
 import browser from 'browser-detect';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { ActivationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Store, select } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { routes } from './app-routing.module';
 
 import {
-  ActionAuthLogin,
-  ActionAuthLogout,
   AnimationsService,
   TitleService,
   selectAuth,
   routeAnimations,
   AppState
-} from '@app/core';
-import { environment as env } from '@env/environment';
+} from '@app/infrastructure/core';
+
+import { ActionNavigationSideClose } from '@app/infrastructure/navigation/navigation.actions';
+import { ActionContextSideClose } from '@app/infrastructure/navigation/navigation.actions';
+import { selectNavigationSide } from '@app/infrastructure/navigation/navigation.selectors';
+import { selectContextSide } from '@app/infrastructure/navigation/navigation.selectors';
 
 import {
   selectSettings,
   SettingsState,
   ActionSettingsChangeAnimationsPageDisabled
-} from './settings';
+} from './infrastructure/settings';
+import { ContextSideDirective } from '@app/infrastructure/shared/directives/context-side.directive';
+import { ContextComponent } from '@app/infrastructure/classes/interfaces/context-component';
+import { selectContextItem } from '@app/infrastructure/shared/shared.selectors';
 
 @Component({
   selector: 'slo-root',
@@ -31,44 +37,50 @@ import {
   animations: [routeAnimations]
 })
 export class AppComponent implements OnInit, OnDestroy {
-  private unsubscribe$: Subject<void> = new Subject<void>();
-
+  // - Bindings -
   @HostBinding('class') componentCssClass;
+  @ViewChild(ContextSideDirective) contextHost: ContextSideDirective;
 
-  isProd = env.production;
-  envName = env.envName;
-  version = env.versions.app;
-  year = new Date().getFullYear();
-
-  // TODO: Pull out into navigation component
-  navigation = [
-    { link: 'about', label: 'slo.menu.about' }
-  ];
-  navigationSideMenu = [
-    ...this.navigation,
-    { link: 'settings', label: 'slo.menu.settings' }
-  ];
-
+  // - Fields -
+  private unsubscribe$: Subject<void> = new Subject<void>();
+  navigationSideMenu = [];
   settings: SettingsState;
   isAuthenticated: boolean;
+  isNavigationSideOpen: boolean;
+  isContextSideOpen: boolean;
 
+  // - Ctor -
   constructor(
     public overlayContainer: OverlayContainer,
     private store: Store<AppState>,
     private router: Router,
     private titleService: TitleService,
     private animationService: AnimationsService,
-    private translate: TranslateService
-  ) {}
+    private translate: TranslateService,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {
+    for (const route of routes) {
+      if (route.path && route.data && route.path.indexOf('*') === -1 && route.data.show) {
+        this.navigationSideMenu.push({
+          name: route.data.text,
+          path: '/' + route.path,
+          icon: route.data.icon
+        });
+      }
+    }
+  }
 
   private static isIEorEdge() {
     return ['ie', 'edge'].includes(browser().name);
   }
 
+  // - OnInit
   ngOnInit(): void {
     this.translate.setDefaultLang('en');
     this.subscribeToSettings();
     this.subscribeToIsAuthenticated();
+    this.subscribeToIsNavigationSideOpen();
+    this.subscribeToIsContextSideOpen();
     this.subscribeToRouterEvents();
   }
 
@@ -77,18 +89,50 @@ export class AppComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  onLoginClick() {
-    this.store.dispatch(new ActionAuthLogin());
+  // - Functions -
+  public closeNavigationSide() {
+    this.store.dispatch(new ActionNavigationSideClose());
   }
 
-  onLogoutClick() {
-    this.store.dispatch(new ActionAuthLogout());
+  public closeContextSide() {
+    this.store.dispatch(new ActionContextSideClose());
+  }
+
+  private fillContextSide(item: any) {
+    // https://angular.io/guide/dynamic-component-loader
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(item.component);
+
+    const viewContainerRef = this.contextHost.viewContainerRef;
+    viewContainerRef.clear();
+
+    const componentRef = viewContainerRef.createComponent(componentFactory);
+    // - dynamic components must implements ContextComponent
+    // - dynamic components must be defined as entryComponents in app.module.ts
+    (<ContextComponent>componentRef.instance).data = item.data;
+  }
+
+  private subscribeToContextSideData() {
+    this.store
+      .pipe(select(selectContextItem), takeUntil(this.unsubscribe$))
+      .subscribe(item => (this.fillContextSide(item)));
   }
 
   private subscribeToIsAuthenticated() {
     this.store
       .pipe(select(selectAuth), takeUntil(this.unsubscribe$))
       .subscribe(auth => (this.isAuthenticated = auth.isAuthenticated));
+  }
+
+  private subscribeToIsNavigationSideOpen() {
+    this.store
+      .pipe(select(selectNavigationSide), takeUntil(this.unsubscribe$))
+      .subscribe(navigationSide => (this.isNavigationSideOpen = navigationSide.isOpen));
+  }
+
+  private subscribeToIsContextSideOpen() {
+    this.store
+      .pipe(select(selectContextSide), takeUntil(this.unsubscribe$))
+      .subscribe(contextSide => (this.isContextSideOpen = contextSide.isOpen));
   }
 
   private subscribeToSettings() {

@@ -1,0 +1,31 @@
+<div class="toolbar">
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="d-md-none" (click)="openNavigationSide()">
+      <mat-icon fontSet="fas" fontIcon="fa-bars"></mat-icon>
+    </button>
+
+    <span routerLink="/dashboard" class="branding center d-none d-sm-inline d-md-none">{{ 'slo.title.short' | translate }}</span>
+    <span routerLink="/dashboard" class="branding d-none d-md-inline">{{ 'slo.title' | translate }}</span>
+
+    <span class="d-none d-md-inline">
+      <button mat-button class="nav-button" *ngFor="let item of navigation" routerLinkActive="active" routerLink="{{item.path}}">
+        <mat-icon fontSet="fas" fontIcon="fa-{{item.icon}}"></mat-icon>&nbsp;&nbsp;{{item.name | translate}}
+      </button>
+    </span>
+
+    <span class="fill-middle-space"></span>
+
+    <button mat-button class="sign-in-button" *ngIf="!isAuthenticated" (click)="onLoginClick()">
+      {{ 'slo.menu.login' | translate }}
+    </button>
+
+    <button mat-icon-button *ngIf="isAuthenticated" routerLink="settings" class="d-none d-sm-inline shadow">
+      <mat-icon fontSet="fas" fontIcon="fa-cog"></mat-icon>
+    </button>
+
+    <button *ngIf="isAuthenticated" mat-button class="sign-in-button" (click)="onLogoutClick()">
+      {{ 'slo.menu.logout' | translate }}
+    </button>
+
+  </mat-toolbar>
+</div>

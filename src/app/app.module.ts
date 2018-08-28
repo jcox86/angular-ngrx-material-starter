@@ -1,34 +1,28 @@
+// -- Angular --
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
-import { SharedModule } from '@app/shared';
-import { CoreModule } from '@app/core';
+// -- Infrastructure --
+import { InfrastructureModule } from '@app/infrastructure/infrastructure.module';
 
-import { SettingsModule } from './settings';
-import { StaticModule } from './static';
-
-import { AppRoutingModule } from './app-routing.module';
+// -- App --
+import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
-    // angular
+    // -- Angular --
     BrowserAnimationsModule,
     BrowserModule,
 
-    // core & shared
-    CoreModule,
-    SharedModule,
+    // -- Infrastructure --
+    InfrastructureModule,
 
-    // features
-    StaticModule,
-    SettingsModule,
-
-    // app
-    AppRoutingModule
+    // -- App --
+    AppRoutingModule // <-----App Routing
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, routedComponents], // <-----The routing Components defined by your routes
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,26 @@
+@import '~@angular/material/theming';
+
+@mixin slo-navbar-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  mat-sidenav-container {
+    mat-toolbar {
+      button {
+        &.active {
+          color: mat-color($accent, default-contrast);
+          background-color: mat-color($accent);
+        }
+      }
+
+      .sign-in-button {
+        color: mat-color($accent);
+        border: 1px solid mat-color($accent);
+      }
+
+      .link {
+        color: mat-color($primary, default-contrast);
+      }
+    }
+  }
+}

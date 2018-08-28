@@ -1,9 +1,13 @@
 {
-  "slo.title": "SLO  Starter",
-  "slo.title.short": "Angular Starter",
+  "slo.title": "SLO Starter",
+  "slo.title.short": "SLO Start",
   "slo.footer.changelog": " Website",
-  "slo.menu.about": "About",
-  "slo.menu.settings": "Settings",
+  "slo.menu.about.title": "About",
+  "slo.menu.about.text": "About",
+  "slo.menu.dashboard.title": "Dashboard",
+  "slo.menu.dashboard.text": "Dashboard",
+  "slo.menu.settings.title": "Settings",
+  "slo.menu.settings.text": "Settings",
   "slo.menu.login": "Log In",
   "slo.menu.logout": "Log Out",
   "slo.about.change-theme": "Change Theme",
@@ -15,8 +19,9 @@
   "slo.settings.themes.light": "Light",
   "slo.settings.themes.nature": "Nature",
   "slo.settings.themes.dark": "Dark",
-  "slo.settings.themes.night-mode": "Auto night mode (from 21:00 to 7:00)",
   "slo.settings.animations": "Animations",
   "slo.settings.animations.page": "Navigation whole page transition",
-  "slo.settings.animations.elements": "Navigation page elements slide up"
+  "slo.settings.animations.elements": "Navigation page elements slide up",
+  "slo.logout.warning": "You are about to be logged out.  Please confirm to continue working.",
+  "slo.logout.success": "You have been successfully logged out."
 }
