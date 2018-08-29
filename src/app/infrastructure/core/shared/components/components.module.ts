@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { BannerComponent } from '@app/infrastructure/core/shared/components/banner/banner.component';
 import { SettingsModule } from '@app/infrastructure/core/shared/components/settings/settings.module';
+import { SharedPipesModule } from '@app/infrastructure/core/shared/pipes/pipe.module';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { SettingsModule } from '@app/infrastructure/core/shared/components/setti
     RouterModule,
     CommonModule,
 
+    SharedPipesModule,
     SettingsModule
   ],
   declarations: [BannerComponent],

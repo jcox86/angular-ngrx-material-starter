@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { environment } from '@env/environment';
@@ -27,16 +26,7 @@ import { SharedModule } from '@app/infrastructure/core/shared/shared.module';
     EffectsModule.forRoot([AuthEffects, NavigationEffects]),
 
     // - Our stuff -
-    SharedModule,
-
-    // 3rd party
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    SharedModule
   ],
   declarations: [],
   providers: [
@@ -44,7 +34,7 @@ import { SharedModule } from '@app/infrastructure/core/shared/shared.module';
     AuthGuardService,
     AnimationsService
   ],
-  exports: [TranslateModule, SharedModule]
+  exports: [SharedModule]
 })
 export class CoreModule {
   constructor(

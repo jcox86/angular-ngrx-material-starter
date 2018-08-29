@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 // - 3rd Party
-import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/infrastructure/core/shared/modules/material.module';
 import { DevExtremeModule } from '@app/infrastructure/core/shared/modules/devextreme.module';
 
@@ -31,7 +30,6 @@ import { SharedDirectivesModule } from '@app/infrastructure/core/shared/directiv
     SharedDirectivesModule,
 
     // - 3rd Party
-    TranslateModule,
     MaterialModule,
     DevExtremeModule
   ],
@@ -50,7 +48,6 @@ import { SharedDirectivesModule } from '@app/infrastructure/core/shared/directiv
     SharedDirectivesModule,
 
     // - 3rd Party
-    TranslateModule,
     MaterialModule,
     DevExtremeModule
   ]
