@@ -26,10 +26,10 @@ import {
   selectSettings, // <---- TODO: Remove store stuff
   SettingsState, // <---- TODO: Remove store stuff
   ActionSettingsChangeAnimationsPageDisabled // <---- TODO: Remove store stuff
-} from './infrastructure/settings';
-import { ContextSideDirective } from '@app/infrastructure/shared/directives/context-side.directive';
+} from './infrastructure/core/shared/components/settings';
+import { ContextSideDirective } from '@app/infrastructure/core/shared/directives/context-side.directive';
 import { ContextComponent } from '@app/infrastructure/classes/interfaces/context-component';
-import { selectContextItem } from '@app/infrastructure/shared/shared.selectors'; // <---- TODO: Remove store stuff
+import { selectContextItem } from '@app/infrastructure/core/shared/shared.selectors'; // <---- TODO: Remove store stuff
 
 @Component({
   selector: 'slo-root',

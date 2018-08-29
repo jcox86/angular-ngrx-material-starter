@@ -3,21 +3,21 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { environment } from '@env/environment';
 
 import { LocalStorageService } from './local-storage/local-storage.service';
 import { AuthEffects } from './auth/auth.effects';
-import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthGuardService } from '@app/infrastructure/core/shared/guards/auth-guard.service';
 import { AnimationsService } from './animations/animations.service';
 import { reducers, metaReducers } from './core.state';
 import { NavigationEffects } from '../navigation/navigation.effects';
+import { SharedModule } from '@app/infrastructure/core/shared/shared.module';
 
 @NgModule({
   imports: [
-    // angular
+    // - Angular -
     CommonModule,
     HttpClientModule,
 
@@ -25,14 +25,8 @@ import { NavigationEffects } from '../navigation/navigation.effects';
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AuthEffects, NavigationEffects]),
 
-    // 3rd party
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    // - Our stuff -
+    SharedModule
   ],
   declarations: [],
   providers: [
@@ -40,7 +34,7 @@ import { NavigationEffects } from '../navigation/navigation.effects';
     AuthGuardService,
     AnimationsService
   ],
-  exports: [TranslateModule]
+  exports: [SharedModule]
 })
 export class CoreModule {
   constructor(

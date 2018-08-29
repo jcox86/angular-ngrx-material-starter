@@ -9,6 +9,9 @@ import { InfrastructureModule } from '@app/infrastructure/infrastructure.module'
 // -- App --
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '@app/infrastructure/core';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -18,11 +21,18 @@ import { AppComponent } from './app.component';
 
     // -- Infrastructure --
     InfrastructureModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
 
     // -- App --
-    AppRoutingModule // <-----App Routing
+    AppRoutingModule // <-----Application Routing
   ],
-  declarations: [AppComponent, routedComponents], // <-----The routing Components defined by your routes
+  declarations: [AppComponent, routedComponents], // <-----The top-level routing Components defined by your routes
   providers: [],
   bootstrap: [AppComponent]
 })

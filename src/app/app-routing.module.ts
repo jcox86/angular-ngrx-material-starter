@@ -5,8 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from '@app/features/about/about.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 
-import { SettingsContainerComponent } from '@app/infrastructure/settings';
-import { AuthGuardService } from '@app/infrastructure/core';
+import { SettingsContainerComponent } from '@app/infrastructure/core/shared/components/settings';
+import { AuthGuardService } from '@app/infrastructure/core/shared/guards/auth-guard.service';
 
 // -- Imported Features (Routes) --
 export const routes: Routes = [

@@ -1,5 +1,5 @@
 import { ContextComponent } from '@app/infrastructure/classes/interfaces/context-component';
-import { ContextItemActions, ContextItemActionTypes } from '@app/infrastructure/shared/shared.actions';
+import { ContextItemActions, ContextItemActionTypes } from '@app/infrastructure/core/shared/shared.actions';
 
 export const initialState: ContextComponent = {
   data: null

@@ -3,7 +3,8 @@ import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
-import { LocalStorageService, AnimationsService } from '@app/infrastructure/core';
+import { LocalStorageService } from '@app/infrastructure/core/local-storage/local-storage.service';
+import { AnimationsService } from '@app/infrastructure/core/animations/animations.service';
 
 import { ActionSettingsPersist, SettingsActionTypes } from './settings.actions';
 
