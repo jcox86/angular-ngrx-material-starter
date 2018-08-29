@@ -20,9 +20,9 @@ import { AppComponent } from './app.component';
     InfrastructureModule,
 
     // -- App --
-    AppRoutingModule // <-----App Routing
+    AppRoutingModule // <-----Application Routing
   ],
-  declarations: [AppComponent, routedComponents], // <-----The routing Components defined by your routes
+  declarations: [AppComponent, routedComponents], // <-----The top-level routing Components defined by your routes
   providers: [],
   bootstrap: [AppComponent]
 })

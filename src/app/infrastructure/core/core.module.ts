@@ -10,20 +10,24 @@ import { environment } from '@env/environment';
 
 import { LocalStorageService } from './local-storage/local-storage.service';
 import { AuthEffects } from './auth/auth.effects';
-import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthGuardService } from '@app/infrastructure/core/shared/guards/auth-guard.service';
 import { AnimationsService } from './animations/animations.service';
 import { reducers, metaReducers } from './core.state';
 import { NavigationEffects } from '../navigation/navigation.effects';
+import { SharedModule } from '@app/infrastructure/core/shared/shared.module';
 
 @NgModule({
   imports: [
-    // angular
+    // - Angular -
     CommonModule,
     HttpClientModule,
 
     // ngrx
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AuthEffects, NavigationEffects]),
+
+    // - Our stuff -
+    SharedModule,
 
     // 3rd party
     TranslateModule.forRoot({
@@ -40,7 +44,7 @@ import { NavigationEffects } from '../navigation/navigation.effects';
     AuthGuardService,
     AnimationsService
   ],
-  exports: [TranslateModule]
+  exports: [TranslateModule, SharedModule]
 })
 export class CoreModule {
   constructor(

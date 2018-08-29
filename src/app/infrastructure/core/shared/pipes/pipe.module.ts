@@ -11,10 +11,10 @@ import { SafeHtmlPipe } from './safe-html.pipe';
   declarations: [SafeHtmlPipe],
   providers: []
 })
-export class PipeModule {
+export class SharedPipesModule {
   static forRoot() {
     return {
-      ngModule: PipeModule
+      ngModule: SharedPipesModule
     };
   }
 }

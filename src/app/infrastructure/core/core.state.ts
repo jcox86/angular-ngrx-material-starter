@@ -19,7 +19,7 @@ import { ContextComponent } from '@app/infrastructure/classes/interfaces/context
 // - Reducers -
 import { authReducer } from './auth/auth.reducer';
 import { navigationSideReducer, contextSideReducer } from '@app/infrastructure/navigation/navigation.reducer';
-import { contextItemReducer } from '@app/infrastructure/shared/shared.reducer';
+import { contextItemReducer } from '@app/infrastructure/core/shared/shared.reducer';
 
 export const reducers: ActionReducerMap<AppState> = {
   auth: authReducer,

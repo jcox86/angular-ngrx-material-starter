@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { TranslateModule } from '@ngx-translate/core';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
@@ -21,22 +19,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-import { BannerComponent } from './banner/banner.component';
-import { PipeModule } from '@app/infrastructure/shared/pipes/pipe.module';
-import { ContextSideDirective } from '@app/infrastructure/shared/directives/context-side.directive';
-
 @NgModule({
   imports: [
-    // - Angular Stuff
     CommonModule,
     FormsModule,
-
-    // - Our Stuff
-    PipeModule,
-
-    // - 3rd Party
-    TranslateModule,
-
     MatButtonModule,
     MatToolbarModule,
     MatSelectModule,
@@ -54,20 +40,9 @@ import { ContextSideDirective } from '@app/infrastructure/shared/directives/cont
     MatSnackBarModule,
     MatSlideToggleModule
   ],
-  declarations: [BannerComponent, ContextSideDirective],
   exports: [
-    // - Angular Stuff
     CommonModule,
     FormsModule,
-
-    // - Our Stuff
-    PipeModule,
-    BannerComponent,
-    ContextSideDirective,
-
-    // - 3rd Party
-    TranslateModule,
-
     MatButtonModule,
     MatMenuModule,
     MatTabsModule,
@@ -86,4 +61,4 @@ import { ContextSideDirective } from '@app/infrastructure/shared/directives/cont
     MatSlideToggleModule
   ]
 })
-export class SharedModule {}
+export class MaterialModule {}

@@ -1,4 +1,4 @@
-import { AppState } from '@app/infrastructure/core';
+import { AppState } from '@app/infrastructure/core/core.state';
 
 export interface SettingsState {
   language: string;
