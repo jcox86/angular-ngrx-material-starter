@@ -1,4 +1,4 @@
-<div class="banner-display" *ngIf="isVisible">
-  <div class="banner-title">{{title}}</div>
-  <div class="banner-message">{{message}}</div>
+<div [style.background-color]="type" *ngIf="isVisible">
+  <div class="banner-title" [innerHTML]="title | safeHtml"></div>
+  <div class="banner-message" [innerHTML]="message | safeHtml"></div> <!-- - Allows for HTML to be present (Links, bold, italiacs, etc.) - -->
 </div>

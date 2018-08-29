@@ -15,6 +15,7 @@ export class BannerComponent implements OnInit {
   // - Fields -
   title: string;
   message: string;
+  type: string;
   environment: string;
 
   // - Ctor -
@@ -22,9 +23,11 @@ export class BannerComponent implements OnInit {
 
   // - OnInit -
   ngOnInit() {
+    // TODO: Set up with API service to get show/hide notifications from database?
     this.title = this.data && this.data.title || 'Test';
-    this.message = this.data && this.data.message || 'Test message for banner system to display annoucements, errors, warning, etc.';
+    this.message = this.data && this.data.message || 'On Thursday, March 22, 2018 between 11:30 AM and 2:00 PM, the CJIS Portal and LWS will be unavailable to install the latest release, including the new version of the CJIS Portal. For more information and to preview new features, please visit our test environment. Note: you may be prompted for your username and password.';
     this.environment = env.envName;
+    this.type = this.message.length > 200 ? 'rgba(255, 0, 0, 0.2)' : 'rgba(102, 204, 255, 0.6)';
   }
 
   // - Functions -

@@ -24,7 +24,7 @@
   </mat-sidenav>
 
   <div class="wrapper">
-    <slo-banner [data]="" [isVisible]="true"></slo-banner> <!-- SLO Banner Component -->
+    <slo-banner [data]="{ 'title': 'WIP', 'message': 'Dev Mode'}" [isVisible]="true"></slo-banner> <!-- SLO Banner Component -->
     <div class="content" [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.path">
       <router-outlet #o="outlet"></router-outlet> <!-- Context pages here w/ animation -->
     </div>

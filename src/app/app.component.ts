@@ -10,25 +10,26 @@ import { routes } from './app-routing.module';
 
 import {
   AnimationsService,
-  TitleService,
-  selectAuth,
+  selectAuth, // <---- TODO: Remove store stuff
   routeAnimations,
-  AppState
+  AppState // <---- TODO: Remove store stuff
 } from '@app/infrastructure/core';
 
-import { ActionNavigationSideClose } from '@app/infrastructure/navigation/navigation.actions';
-import { ActionContextSideClose } from '@app/infrastructure/navigation/navigation.actions';
-import { selectNavigationSide } from '@app/infrastructure/navigation/navigation.selectors';
-import { selectContextSide } from '@app/infrastructure/navigation/navigation.selectors';
+import { TitleService } from '@app/infrastructure/services/title.service';
+
+import { ActionNavigationSideClose } from '@app/infrastructure/navigation/navigation.actions'; // <---- TODO: Remove store stuff
+import { ActionContextSideClose } from '@app/infrastructure/navigation/navigation.actions'; // <---- TODO: Remove store stuff
+import { selectNavigationSide } from '@app/infrastructure/navigation/navigation.selectors'; // <---- TODO: Remove store stuff
+import { selectContextSide } from '@app/infrastructure/navigation/navigation.selectors'; // <---- TODO: Remove store stuff
 
 import {
-  selectSettings,
-  SettingsState,
-  ActionSettingsChangeAnimationsPageDisabled
+  selectSettings, // <---- TODO: Remove store stuff
+  SettingsState, // <---- TODO: Remove store stuff
+  ActionSettingsChangeAnimationsPageDisabled // <---- TODO: Remove store stuff
 } from './infrastructure/settings';
 import { ContextSideDirective } from '@app/infrastructure/shared/directives/context-side.directive';
 import { ContextComponent } from '@app/infrastructure/classes/interfaces/context-component';
-import { selectContextItem } from '@app/infrastructure/shared/shared.selectors';
+import { selectContextItem } from '@app/infrastructure/shared/shared.selectors'; // <---- TODO: Remove store stuff
 
 @Component({
   selector: 'slo-root',

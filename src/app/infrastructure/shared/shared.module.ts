@@ -20,13 +20,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 import { BannerComponent } from './banner/banner.component';
+import { PipeModule } from '@app/infrastructure/shared/pipes/pipe.module';
+import { ContextSideDirective } from '@app/infrastructure/shared/directives/context-side.directive';
 
 @NgModule({
   imports: [
+    // - Angular Stuff
     CommonModule,
     FormsModule,
 
+    // - Our Stuff
+    PipeModule,
+
+    // - 3rd Party
     TranslateModule,
 
     MatButtonModule,
@@ -46,11 +54,18 @@ import { BannerComponent } from './banner/banner.component';
     MatSnackBarModule,
     MatSlideToggleModule
   ],
-  declarations: [BannerComponent],
+  declarations: [BannerComponent, ContextSideDirective],
   exports: [
+    // - Angular Stuff
     CommonModule,
     FormsModule,
 
+    // - Our Stuff
+    PipeModule,
+    BannerComponent,
+    ContextSideDirective,
+
+    // - 3rd Party
     TranslateModule,
 
     MatButtonModule,
@@ -68,9 +83,7 @@ import { BannerComponent } from './banner/banner.component';
     MatIconModule,
     MatTooltipModule,
     MatSnackBarModule,
-    MatSlideToggleModule,
-
-    BannerComponent
+    MatSlideToggleModule
   ]
 })
 export class SharedModule {}

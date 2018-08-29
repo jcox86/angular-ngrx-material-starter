@@ -12,7 +12,6 @@ import { LocalStorageService } from './local-storage/local-storage.service';
 import { AuthEffects } from './auth/auth.effects';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { AnimationsService } from './animations/animations.service';
-import { TitleService } from './title/title.service';
 import { reducers, metaReducers } from './core.state';
 import { NavigationEffects } from '../navigation/navigation.effects';
 
@@ -39,8 +38,7 @@ import { NavigationEffects } from '../navigation/navigation.effects';
   providers: [
     LocalStorageService,
     AuthGuardService,
-    AnimationsService,
-    TitleService
+    AnimationsService
   ],
   exports: [TranslateModule]
 })
