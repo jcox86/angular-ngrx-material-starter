@@ -14,6 +14,7 @@ import { SharedControlsModule } from '@app/infrastructure/core/shared/controls/c
 import { SharedGuardsModule } from '@app/infrastructure/core/shared/guards/guards.module';
 import { SharedResolversModule } from '@app/infrastructure/core/shared/resolvers/resolvers.module';
 import { SharedDirectivesModule } from '@app/infrastructure/core/shared/directives/directives.module';
+import { SharedValidationModule } from '@app/infrastructure/core/shared/validation/validation.module';
 
 @NgModule({
   imports: [
@@ -22,12 +23,13 @@ import { SharedDirectivesModule } from '@app/infrastructure/core/shared/directiv
     FormsModule,
 
     // - Our Stuff
-    SharedPipesModule,
+    SharedPipesModule.forRoot(),
     SharedComponentsModule,
     SharedControlsModule,
     SharedGuardsModule,
     SharedResolversModule,
     SharedDirectivesModule,
+    SharedValidationModule,
 
     // - 3rd Party
     MaterialModule,
@@ -46,6 +48,7 @@ import { SharedDirectivesModule } from '@app/infrastructure/core/shared/directiv
     SharedGuardsModule,
     SharedResolversModule,
     SharedDirectivesModule,
+    SharedValidationModule,
 
     // - 3rd Party
     MaterialModule,

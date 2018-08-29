@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { TitleService } from '@app/infrastructure/services/title.service';
+import { ResponseErrorHandlerService } from '@app/infrastructure/services/response-error-handler.service';
+import { MessageService } from '@app/infrastructure/services/message.service';
 
 @NgModule({
   imports: [
@@ -11,7 +13,9 @@ import { TitleService } from '@app/infrastructure/services/title.service';
   ],
   declarations: [],
   providers: [
-    TitleService
+    TitleService,
+    ResponseErrorHandlerService,
+    MessageService
   ]
 })
 export class ServicesModule {}

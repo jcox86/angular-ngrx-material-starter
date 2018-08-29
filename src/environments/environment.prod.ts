@@ -6,6 +6,7 @@ export const environment = {
   production: true,
   test: false,
   i18nPrefix: '/slo-starter',
+  apiRoute: '',
   versions: {
     app: packageJson.version
   }

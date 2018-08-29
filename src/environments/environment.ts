@@ -11,6 +11,7 @@ export const environment = {
   production: false,
   test: false,
   i18nPrefix: '',
+  apiRoute: '',
   versions: {
     app: packageJson.version
   }

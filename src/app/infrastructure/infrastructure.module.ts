@@ -11,15 +11,15 @@ import { FooterComponent } from './navigation/footer/footer.component';
 
 @NgModule({
   imports: [
-    RouterModule, // <--- Needed for navbar below
-    TranslateModule, // <--- Needed for navbar below
+    RouterModule, // <--- Needed for navbar
+    TranslateModule, // <--- Needed for navbar
 
     CoreModule, // <--- Must import Infrastructure modules here
     ServicesModule
   ],
   declarations: [NavbarComponent, FooterComponent],
   exports: [
-    TranslateModule, // <--- Needed for navbar below
+    TranslateModule, // <--- Needed for navbar
 
     CoreModule, // <--- Must export same (Imported Modules) AND (Declared Components) as listed above so app.module.ts can import them
     ServicesModule,

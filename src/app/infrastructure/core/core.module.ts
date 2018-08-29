@@ -14,6 +14,7 @@ import { AnimationsService } from './animations/animations.service';
 import { reducers, metaReducers } from './core.state';
 import { NavigationEffects } from '../navigation/navigation.effects';
 import { SharedModule } from '@app/infrastructure/core/shared/shared.module';
+import { ApiModule } from '@app/infrastructure/core/api/api.module';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { SharedModule } from '@app/infrastructure/core/shared/shared.module';
     EffectsModule.forRoot([AuthEffects, NavigationEffects]),
 
     // - Our stuff -
-    SharedModule
+    SharedModule,
+    ApiModule
   ],
   declarations: [],
   providers: [

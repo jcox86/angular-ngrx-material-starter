@@ -6,6 +6,9 @@ import { NgModule } from '@angular/core';
 // -- Infrastructure --
 import { InfrastructureModule } from '@app/infrastructure/infrastructure.module';
 
+// -- 3rd party --
+import { ToastrModule } from 'ngx-toastr';
+
 // -- App --
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +22,8 @@ import { HttpClient } from '@angular/common/http';
     BrowserAnimationsModule,
     BrowserModule,
 
+    // -- Features --
+
     // -- Infrastructure --
     InfrastructureModule,
     TranslateModule.forRoot({
@@ -27,6 +32,13 @@ import { HttpClient } from '@angular/common/http';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
+    }),
+
+    // -- 3rd party --
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
     }),
 
     // -- App --
