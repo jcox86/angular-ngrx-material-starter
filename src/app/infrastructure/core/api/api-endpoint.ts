@@ -1,10 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 
 import { shareReplay } from 'rxjs/operators';
 
 import { environment as env } from '@env/environment';
-import { ResponseErrorHandlerService } from '@app/infrastructure/services/response-error-handler.service';
 
 type headerProp = 'none'; // ******Define header properties here******
 
@@ -31,7 +30,7 @@ export class ApiEndpoint {
   public putError;
   public deleteError;
 
-  constructor(public http: HttpClient, public errors: ResponseErrorHandlerService) { }
+  constructor(public http: HttpClient) { }
 
   initialize(config: EndpointConfig) {
     this.config = config;
@@ -55,16 +54,7 @@ export class ApiEndpoint {
       response => {
         apiRequest.response = response;
         apiRequest.status = response;
-      },
-      error => {
-        try {
-          apiRequest.response = error.json();
-        } catch (e) {
-          apiRequest.response = null;
-        }
-        apiRequest.status = error.status;
-        this.errors.handleError(error);
-      },
+      }
     );
     return subscription;
   }
@@ -87,16 +77,7 @@ export class ApiEndpoint {
       response => {
         apiRequest.response = response;
         apiRequest.status = response;
-      },
-      error => {
-        try {
-          apiRequest.response = error.json();
-        } catch (e) {
-          apiRequest.response = null;
-        }
-        apiRequest.status = error.status;
-        this.errors.handleError(error);
-      },
+      }
     );
     return subscription;
   }
@@ -118,16 +99,7 @@ export class ApiEndpoint {
       response => {
         apiRequest.response = response;
         apiRequest.status = response;
-      },
-      error => {
-        try {
-          apiRequest.response = error.json();
-        } catch (e) {
-          apiRequest.response = null;
-        }
-        apiRequest.status = error.status;
-        this.errors.handleError(error);
-      },
+      }
     );
     return subscription;
   }
@@ -155,16 +127,7 @@ export class ApiEndpoint {
           apiRequest.response = null;
         }
         apiRequest.status = response;
-      },
-      error => {
-        try {
-          apiRequest.response = error;
-        } catch (e) {
-          apiRequest.response = null;
-        }
-        apiRequest.status = error.status;
-        this.errors.handleError(error);
-      },
+      }
     );
     return subscription;
   }

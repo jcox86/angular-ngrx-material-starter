@@ -7,7 +7,6 @@ import { Store, select } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { routes } from './app-routing.module';
-
 import {
   AnimationsService,
   selectAuth, // <---- TODO: Remove store stuff
@@ -30,6 +29,7 @@ import {
 import { ContextSideDirective } from '@app/infrastructure/core/shared/directives/context-side.directive';
 import { ContextComponent } from '@app/infrastructure/classes/interfaces/context-component';
 import { selectContextItem } from '@app/infrastructure/core/shared/shared.selectors'; // <---- TODO: Remove store stuff
+import { LogService } from '@app/infrastructure/services/log.service';
 
 @Component({
   selector: 'slo-root',
@@ -58,7 +58,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private titleService: TitleService,
     private animationService: AnimationsService,
     private translate: TranslateService,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private log: LogService
   ) {
     for (const route of routes) {
       if (route.path && route.data && route.path.indexOf('*') === -1 && route.data.show) {
@@ -77,6 +78,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // - OnInit
   ngOnInit(): void {
+    this.log.info('App component started');
     this.translate.setDefaultLang('en');
     this.subscribeToSettings();
     this.subscribeToIsAuthenticated();

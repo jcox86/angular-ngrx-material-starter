@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 
 import { IApiError } from '../classes/interfaces/api-error';
-import { MessageService } from './message.service';
+import { LogService } from '@app/infrastructure/services/log.service';
 
 @Injectable()
 export class ResponseErrorHandlerService {
@@ -12,33 +12,36 @@ export class ResponseErrorHandlerService {
     type: 'error'
   };
 
-  constructor(private message: MessageService) {}
+  constructor(private log: LogService) {}
 
-  public handleError(error: Response | any): Observable<any> {
-    this.messageStyle.type = 'error';
-    if (error.status === 401 && error.status !== 0) {
-      this.errorMessage.description = this.setUnauthorized();
-      this.errorMessage.header = 'Not Authenticated';
-    } else if (error.status === 403 && error.status !== 0) {
-      this.errorMessage.description = this.setForbidden();
-      this.errorMessage.header = 'Not Authorized';
-    } else if (!error.status) {
-      this.errorMessage.description =
-        'Server Error. Please contact your supervisor if you need assistance.';
-      this.errorMessage.header = 'Invalid Request';
-    } else if (error.error.errors !== '' && error.status !== 0) {
-      this.errorMessage.description = this.unpackErrors(error.error);
-      this.errorMessage.header = 'Error';
+  public handleError(error: Response | any) {
+    switch (error.status) {
+      case 400:
+        this.errorMessage.description = error.message;
+        this.errorMessage.header = 'Invalid Request';
+        break;
+      case 401:
+        this.errorMessage.description = this.setUnauthorized();
+        this.errorMessage.header = 'Not Authenticated';
+        break;
+      case 403:
+        this.errorMessage.description = this.setForbidden();
+        this.errorMessage.header = 'Not Authorized';
+        break;
+      default:
+        this.errorMessage.description = error.message;
+        this.errorMessage.header = 'Server Error';
+        break;
     }
-    this.message.showToastError(this.errorMessage);
-    return throwError(this.errorMessage);
+    // return this.log.error(this.errorMessage);
   }
 
   private unpackErrors(response): string {
     let message = '';
-    typeof response === 'string'
-      ? (message = JSON.parse(response).errors[0].message)
-      : (message = response.errors[0].message);
+    // typeof response === 'string'
+    //   ? (message = JSON.parse(response).errors[0].message)
+    //   : (message = response.errors[0].message);
+    message = response;
 
     return message;
   }

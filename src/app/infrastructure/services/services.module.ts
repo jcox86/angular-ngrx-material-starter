@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { TitleService } from '@app/infrastructure/services/title.service';
 import { ResponseErrorHandlerService } from '@app/infrastructure/services/response-error-handler.service';
 import { MessageService } from '@app/infrastructure/services/message.service';
+import { LogService } from '@app/infrastructure/services/log.service';
+import { ToastrService } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -14,8 +16,10 @@ import { MessageService } from '@app/infrastructure/services/message.service';
   declarations: [],
   providers: [
     TitleService,
-    ResponseErrorHandlerService,
-    MessageService
+    // ResponseErrorHandlerService,
+    MessageService,
+    LogService,
+    ToastrService
   ]
 })
 export class ServicesModule {}

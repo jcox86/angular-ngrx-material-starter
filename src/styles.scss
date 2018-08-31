@@ -5,6 +5,7 @@
 @import '../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fontawesome';
 @import '../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-solid';
 @import '../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-brands';
+@import '~ngx-toastr/toastr-bs4-alert';
 
 @import 'styles-reset';
 
@@ -20,6 +21,7 @@
 @import 'styles-reset.scss-theme';
 @import 'app/app.component.scss-theme';
 @import 'app/features/about/about.component.scss-theme';
+@import 'app/features/dashboard/dashboard.component.scss-theme';
 @import 'app/infrastructure/navigation/footer/footer.component.scss-theme';
 @import 'app/infrastructure/navigation/navbar/navbar.component.scss-theme';
 
@@ -27,6 +29,7 @@
   @include slo-styles-reset-theme($theme);
   @include slo-app-component-theme($theme);
   @include slo-about-component-theme($theme);
+  @include slo-dashboard-component-theme($theme);
   @include slo-footer-component-theme($theme);
   @include slo-navbar-component-theme($theme);
 }

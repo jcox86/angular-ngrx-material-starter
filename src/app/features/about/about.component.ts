@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ROUTE_ANIMATIONS_ELEMENTS, AppState } from '@app/infrastructure/core';
 import { ActionContextSideOpen } from '@app/infrastructure/navigation/navigation.actions';
 import { Store } from '@ngrx/store';
+import { LogService } from '@app/infrastructure/services/log.service';
 
 @Component({
   selector: 'slo-about',
@@ -14,10 +15,12 @@ export class AboutComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
 
   // - Ctor -
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private log: LogService) {}
 
   // - OnInit -
-  ngOnInit() {}
+  ngOnInit() {
+    this.log.info('About component started');
+  }
 
   // - Functions -
   openContextSide() {

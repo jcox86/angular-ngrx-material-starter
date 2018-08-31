@@ -5,8 +5,8 @@ import { ActionAuthLogin, ActionAuthLogout, selectAuth, AppState } from '@app/in
 import { Store, select } from '@ngrx/store';
 
 import { routes } from '../../../app-routing.module';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, Observable } from 'rxjs';
+import { takeUntil, map } from 'rxjs/operators';
 import { ActionNavigationSideOpen } from '@app/infrastructure/navigation/navigation.actions';
 
 @Component({
@@ -17,8 +17,8 @@ import { ActionNavigationSideOpen } from '@app/infrastructure/navigation/navigat
 export class NavbarComponent implements OnInit, OnDestroy {
   // - Fields -
   private unsubscribe$: Subject<void> = new Subject<void>();
+  public isAuthenticated$: Observable<boolean>;
 
-  public isAuthenticated: boolean;
   public displayName: string;
   public navigation: Array<{
     path: string,
@@ -51,9 +51,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   // - Functions -
   private subscribeToIsAuthenticated() {
-    this.store
-      .pipe(select(selectAuth), takeUntil(this.unsubscribe$))
-      .subscribe(auth => (this.isAuthenticated = auth.isAuthenticated));
+    this.isAuthenticated$ = this.store.pipe(
+      select(selectAuth),
+      map(auth => auth.isAuthenticated),
+      takeUntil(this.unsubscribe$));
   }
 
   openNavigationSide() {

@@ -1,5 +1,5 @@
 import { NgModule, Injectable } from '@angular/core';
-import { SharedModule } from '@app/shared';
+import { SharedModule } from '@app/infrastructure/core/shared/shared.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import {

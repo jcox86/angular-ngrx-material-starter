@@ -15,15 +15,15 @@
 
     <span class="fill-middle-space"></span>
 
-    <button mat-button class="sign-in-button" *ngIf="!isAuthenticated" (click)="onLoginClick()">
+    <button mat-button class="sign-in-button" *ngIf="!(isAuthenticated$ | async)" (click)="onLoginClick()">
       {{ 'slo.menu.login' | translate }}
     </button>
 
-    <button mat-icon-button *ngIf="isAuthenticated" routerLink="settings" class="d-none d-sm-inline shadow">
+    <button mat-icon-button *ngIf="(isAuthenticated$ | async)" routerLink="settings" class="d-none d-sm-inline shadow">
       <mat-icon fontSet="fas" fontIcon="fa-cog"></mat-icon>
     </button>
 
-    <button *ngIf="isAuthenticated" mat-button class="sign-in-button" (click)="onLogoutClick()">
+    <button *ngIf="(isAuthenticated$ | async)" mat-button class="sign-in-button" (click)="onLogoutClick()">
       {{ 'slo.menu.logout' | translate }}
     </button>
 

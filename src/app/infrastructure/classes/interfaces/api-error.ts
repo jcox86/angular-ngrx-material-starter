@@ -1,9 +1,4 @@
-export class IApiError {
+export interface IApiError {
   header: string;
   description: string;
-
-  constructor() {
-    this.header = '';
-    this.description = '';
-  }
 }
