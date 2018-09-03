@@ -2,8 +2,12 @@
   <div class="gradient">
     <div class="container">
       <button mat-button-raised color="primary" (click)="traceService()">TRACE</button>
+      <button mat-button-raised color="primary" (click)="debugService()">DEBUG</button>
+      <button mat-button-raised color="primary" (click)="infoService()">INFO</button>
+      <button mat-button-raised color="primary" (click)="warnService()">WARN</button>
+      <button mat-button-raised color="primary" (click)="errorService()">ERROR</button>
       <button mat-button-raised color="primary" (click)="callApi()">API</button>
-      <!-- <pre>{{logHistory | json}}</pre> -->
+      <pre>{{logHistory | json}}</pre>
     </div>
   </div>
 </div>

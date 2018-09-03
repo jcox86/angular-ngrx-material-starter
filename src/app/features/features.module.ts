@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { DashboardComponent } from '@app/features/dashboard/dashboard.component';
 import { AboutComponent } from '@app/features/about/about.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { MaterialModule } from '@app/infrastructure/core/shared/modules/material.module';
 
 @NgModule({
   imports: [
     TranslateModule,
-    MaterialModule
+    CommonModule
    ],
   declarations: [DashboardComponent, AboutComponent],
   exports: [

@@ -14,7 +14,8 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    data: { title: 'slo.menu.dashboard.title', text: 'slo.menu.dashboard.text', icon: 'tachometer-alt', show: true }
+    data: { title: 'slo.menu.dashboard.title', text: 'slo.menu.dashboard.text', icon: 'tachometer-alt', show: true },
+    resolve: { about: RouterResolver }
   },
   {
     path: 'about',

@@ -2,6 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 // -- Features --
 import { FeaturesModule } from '@app/features/features.module';
@@ -15,26 +17,26 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 // -- App --
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '@app/infrastructure/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
     // -- Angular --
-    BrowserAnimationsModule,
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
-
-    // -- Features --
-    FeaturesModule,
-
+    CommonModule,
+    
     // -- Infrastructure --
     InfrastructureModule,
+    
+    // -- Features --
+    FeaturesModule,
 
     // -- 3rd party Configs--
     ToastrModule.forRoot({

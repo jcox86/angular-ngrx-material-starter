@@ -34,7 +34,7 @@ import { SharedErrorsModule } from '@app/infrastructure/core/shared/errors/error
     SharedErrorsModule,
 
     // - 3rd Party
-    MaterialModule,
+    MaterialModule.forRoot(),
     DevExtremeModule
   ],
   declarations: [],

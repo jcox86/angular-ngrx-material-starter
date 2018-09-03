@@ -4,6 +4,7 @@ import { Injectable, Injector } from '@angular/core';
 import { shareReplay } from 'rxjs/operators';
 
 import { environment as env } from '@env/environment';
+import { LogService } from '@app/infrastructure/services/log.service';
 
 type headerProp = 'none'; // ******Define header properties here******
 
@@ -30,7 +31,7 @@ export class ApiEndpoint {
   public putError;
   public deleteError;
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, private log: LogService) { }
 
   initialize(config: EndpointConfig) {
     this.config = config;
@@ -43,12 +44,14 @@ export class ApiEndpoint {
     const apiRequest = {
       route: this.config.route,
       payload,
-      type: 'post',
+      type: 'POST',
       headers: headers,
       response: null,
       status: null,
     };
-    const subscription = this.http.post(`${this.url}${route}`, payload, headers).pipe(shareReplay());
+    const finalEndpoint = `${this.url}${route}`;
+    const subscription = this.http.post(finalEndpoint, payload, headers).pipe(shareReplay());
+    this.log.trace({ name: 'HTTP Request', scope: 'HTTP', message: `${apiRequest.type}: ${finalEndpoint}`, stack: payload});
 
     subscription.subscribe(
       response => {
@@ -66,12 +69,14 @@ export class ApiEndpoint {
     const apiRequest = {
       route: this.config.route,
       payload,
-      type: 'put',
+      type: 'PUT',
       headers: headers,
       response: null,
       status: null,
     };
-    const subscription = this.http.put(`${this.url}${route}`, payload, headers).pipe(shareReplay());
+    const finalEndpoint = `${this.url}${route}`;
+    const subscription = this.http.put(finalEndpoint, payload, headers).pipe(shareReplay());
+    this.log.trace({ name: 'HTTP Request', scope: 'HTTP', message: `${apiRequest.type}: ${finalEndpoint}`, stack: payload});
 
     subscription.subscribe(
       response => {
@@ -88,12 +93,14 @@ export class ApiEndpoint {
 
     const apiRequest = {
       route: this.config.route,
-      type: 'delete',
+      type: 'DELETE',
       headers: headers,
       response: null,
       status: null,
     };
-    const subscription = this.http.delete(`${this.url}${route}`, headers).pipe(shareReplay());
+    const finalEndpoint = `${this.url}${route}`;
+    const subscription = this.http.delete(finalEndpoint, headers).pipe(shareReplay());
+    this.log.trace({ name: 'HTTP Request', scope: 'HTTP', message: `${apiRequest.type}: ${finalEndpoint}`});
 
     subscription.subscribe(
       response => {
@@ -111,13 +118,14 @@ export class ApiEndpoint {
     const apiRequest = {
       route,
       payload: {},
-      type: 'get',
+      type: 'GET',
       headers: headers,
       response: null,
       status: null,
     };
-    const finalRoute = `${this.url}${route}`;
-    const subscription = this.http.get(finalRoute, headers).pipe(shareReplay());
+    const finalEndpoint = `${this.url}${route}`;
+    const subscription = this.http.get(finalEndpoint, headers).pipe(shareReplay());
+    this.log.trace({ name: 'HTTP Request', scope: 'HTTP', message: `${apiRequest.type}: ${finalEndpoint}`});
 
     subscription.subscribe(
       response => {

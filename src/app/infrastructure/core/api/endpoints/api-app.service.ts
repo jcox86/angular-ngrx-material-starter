@@ -25,7 +25,7 @@ export class ApiAppService extends ApiEndpoint {
     );
   }
 
-  log(logs: ILog[]) {
+  logHistory(logs: ILog[]) {
     return this.post(logs, `${this.config.route}/log`);
   }
 }

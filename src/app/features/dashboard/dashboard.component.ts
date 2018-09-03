@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from '@app/infrastructure/core';
 import { MessageService } from '@app/infrastructure/services/message.service';
@@ -9,7 +9,8 @@ import { ApiService } from '@app/infrastructure/core/api/api.service';
   selector: 'slo-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
@@ -20,7 +21,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => this.messageService.showToastSuccess({'header': 'Welcome', 'description': 'Welcome to the SLO Starter Seed'}));
     this.logHistory = this.log.logHistory;
-    this.log.info('Dashboard component started');
    }
 
   traceService() {
@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
   }
 
   errorService() {
-    this.log.error('ERROR');
+    this.log.error('ERROR TEST');
   }
 
   callApi() {

@@ -37,7 +37,7 @@ export class LogService {
   }
 
   public error(error) {
-    this.log.error(error && error.message || 'ERROR');
+    this.log.error(error || 'ERROR');
     this.saveToLogHistory(error, NgxLoggerLevel.ERROR);
   }
 
@@ -49,13 +49,8 @@ export class LogService {
     logToSend.name = error.name || null;
     logToSend.timestamp = moment().toISOString();
     const location = this.injector.get(LocationStrategy);
-    logToSend.url = location.href;
+    logToSend.url = location.href || location._platformLocation.location.href || '';
     logToSend.location = '';
-    logToSend.scope = typeof error === 'string'
-      ? 'LOG ONLY'
-      : error instanceof HttpErrorResponse
-        ? 'API'
-        : error.ngDebugContext.component.constructor.name;
 
     switch (level) {
       case NgxLoggerLevel.TRACE:
@@ -79,12 +74,17 @@ export class LogService {
       default:
         break;
     }
+    logToSend.scope = typeof error === 'string'
+    ? `SLO ${logToSend.level}` // - Client log we threw
+    : error instanceof HttpErrorResponse || error.scope === 'HTTP'
+      ? 'HTTP' // - Server error
+      : error.ngDebugContext.component.constructor.name; // - Client Error
     logToSend.message = error.message || error.toString();
     logToSend.stack = error instanceof HttpErrorResponse
       ? null
       : typeof error === 'string'
-        ? JSON.stringify(error)
-        : error.stack;
+        ? null
+        : JSON.stringify(error.stack); // - Client Error
 
     this.updateUserLogHistory(logToSend);
     return logToSend;

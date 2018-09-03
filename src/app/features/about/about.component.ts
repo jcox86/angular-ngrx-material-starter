@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { ROUTE_ANIMATIONS_ELEMENTS, AppState } from '@app/infrastructure/core';
 import { ActionContextSideOpen } from '@app/infrastructure/navigation/navigation.actions';
@@ -8,7 +8,8 @@ import { LogService } from '@app/infrastructure/services/log.service';
 @Component({
   selector: 'slo-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  styleUrls: ['./about.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AboutComponent implements OnInit {
   // - Fields -
@@ -18,9 +19,7 @@ export class AboutComponent implements OnInit {
   constructor(private store: Store<AppState>, private log: LogService) {}
 
   // - OnInit -
-  ngOnInit() {
-    this.log.info('About component started');
-  }
+  ngOnInit() {}
 
   // - Functions -
   openContextSide() {
