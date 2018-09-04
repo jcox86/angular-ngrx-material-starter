@@ -30,6 +30,8 @@ import { ContextSideDirective } from '@app/infrastructure/core/shared/directives
 import { ContextComponent } from '@app/infrastructure/classes/interfaces/context-component';
 import { selectContextItem } from '@app/infrastructure/core/shared/shared.selectors'; // <---- TODO: Remove store stuff
 import { LogService } from '@app/infrastructure/services/log.service';
+import { environment as env } from '@env/environment';
+import { MessageService } from '@app/infrastructure/services/message.service';
 
 @Component({
   selector: 'slo-root',
@@ -49,6 +51,8 @@ export class AppComponent implements OnInit, OnDestroy {
   isAuthenticated: boolean;
   isNavigationSideOpen: boolean;
   isContextSideOpen: boolean;
+  isProd = env.production;
+  envName = env.envName;
 
   // - Ctor -
   constructor(
@@ -59,6 +63,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private animationService: AnimationsService,
     private translate: TranslateService,
     private componentFactoryResolver: ComponentFactoryResolver,
+    private messageService: MessageService,
     private log: LogService
   ) {
     for (const route of routes) {
@@ -85,6 +90,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscribeToIsNavigationSideOpen();
     this.subscribeToIsContextSideOpen();
     this.subscribeToRouterEvents();
+    setTimeout(() => this.messageService.showToastSuccess({ 'header': 'Welcome', 'description': 'Welcome to the SLO Starter Seed' }), 1000);
+    setTimeout(() => this.messageService.showToastInfo({ 'header': 'FYI', 'description': 'This is just a seed project' }), 4000);
+    setTimeout(() => this.messageService.showToastWarning({ 'header': 'Change it up', 'description': 'Make this project into whatever you want!' }), 7000);
   }
 
   ngOnDestroy(): void {

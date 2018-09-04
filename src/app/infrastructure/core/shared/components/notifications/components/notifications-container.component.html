@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>{{ 'slo.notifications.title' | translate }}</h1>
+    </div>
+  </div>
+  <br>
+  <div class="row background">
+    <dx-list #list
+      [dataSource]="notifications"
+      [height]="600"
+      [width]="'100%'"
+      [searchEnabled]="true"
+      searchExpr="Name"
+      searchMode="contains"
+      pageLoadMode="scrollBottom"
+    >
+      <div *dxTemplate="let data of 'item'">
+        <div>
+          <b>{{data.title}}</b><br>
+          <span>{{data.message}}</span>
+        </div>
+      </div>
+    </dx-list>
+  </div>
+</div>

@@ -1,42 +1,37 @@
 @import '../../../styles-variables';
 
 .background {
-  padding: 20px 0 0 0;
+  padding: 20px 0 20px 0;
   position: relative;
-
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    // background: url('../../../assets/intro.jpg') no-repeat center top;
-    background-size: cover;
-    opacity: 0.7;
-    content: '';
-    z-index: 0;
-  }
-
-  .gradient {
-    &::before {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      content: '';
-      z-index: 0;
-    }
-  }
 
   .container {
     position: relative;
+  }
+
+  .options {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: rgba(191, 191, 191, 0.15);
+  }
+  .caption {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .option {
+    margin-top: 10px;
+  }
+  .option > span {
+    margin-right: 10px;
+  }
+  .option > .dx-selectbox {
+    display: inline-block;
+    vertical-align: middle;
   }
 }
 
 @media (max-width: map-get($grid-breakpoints, sm)) {
   .background {
-    padding: 40px 0 0 0;
+    padding: 10px 0 10px 0;
 
     h1 {
       line-height: 1em;

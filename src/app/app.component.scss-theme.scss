@@ -16,6 +16,11 @@
           }
         }
       }
+
+      .environment {
+        background-color: mat-color($accent, lighter);
+        color: red !important;
+      }
     }
   }
 }

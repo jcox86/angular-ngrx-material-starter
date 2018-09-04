@@ -7,11 +7,12 @@ const packageJson = require('../../package.json');
 
 export const environment = {
   appName: 'SLO Starter',
-  envName: 'DEV',
+  envName: 'LOCAL',
   production: false,
   test: false,
   i18nPrefix: '',
   apiRoute: '',
+  sourceControlLink: 'http://tfs2017:8080/tfs/CJIS/CJIS/CJIS%20Team/_versionControl?path=%24%2FCJIS%2FDev%2FSustEng%2Fsrc',
   versions: {
     app: packageJson.version
   }

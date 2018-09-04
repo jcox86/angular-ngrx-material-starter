@@ -4,6 +4,10 @@
       <mat-icon fontSet="fas" fontIcon="fa-bars"></mat-icon>
     </button>
 
+    <span class="environment" *ngIf="!isProd">
+      ****** {{envName | uppercase}} ******
+    </span>
+
     <span routerLink="/dashboard" class="branding center d-none d-sm-inline d-md-none">{{ 'slo.title.short' | translate }}</span>
     <span routerLink="/dashboard" class="branding d-none d-md-inline">{{ 'slo.title' | translate }}</span>
 
@@ -19,7 +23,11 @@
       {{ 'slo.menu.login' | translate }}
     </button>
 
-    <button mat-icon-button *ngIf="(isAuthenticated$ | async)" routerLink="settings" class="d-none d-sm-inline shadow">
+    <button mat-icon-button *ngIf="(isAuthenticated$ | async)" routerLink="notifications" class="d-none d-sm-inline">
+      <mat-icon fontSet="fas" fontIcon="fa-bell"></mat-icon>
+    </button>
+
+    <button mat-icon-button *ngIf="(isAuthenticated$ | async)" routerLink="settings" class="d-none d-sm-inline">
       <mat-icon fontSet="fas" fontIcon="fa-cog"></mat-icon>
     </button>
 
@@ -27,5 +35,8 @@
       {{ 'slo.menu.logout' | translate }}
     </button>
 
+    <span class="environment" *ngIf="!isProd">
+        ****** {{envName | uppercase}} ******
+      </span>
   </mat-toolbar>
 </div>

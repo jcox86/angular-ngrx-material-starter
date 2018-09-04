@@ -12,6 +12,7 @@ export class FooterComponent implements OnInit {
   isProd = env.production;
   envName = env.envName;
   version = env.versions.app;
+  sourceControl = env.sourceControlLink;
   year = new Date().getFullYear();
 
   constructor() { }

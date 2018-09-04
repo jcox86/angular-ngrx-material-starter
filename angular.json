@@ -38,6 +38,51 @@
             "scripts": []
           },
           "configurations": {
+            "local": {
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "qa": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.qa.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -63,6 +108,15 @@
             "browserTarget": "slo-starter:build"
           },
           "configurations": {
+            "local": {
+              "browserTarget": "slo-starter:build:local"
+            },
+            "dev": {
+              "browserTarget": "slo-starter:build:dev"
+            },
+            "qa": {
+              "browserTarget": "slo-starter:build:qa"
+            },
             "production": {
               "browserTarget": "slo-starter:build:production"
             }

@@ -2,68 +2,58 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { DxDataGridModule,
-  DxButtonModule,
-  DxFormModule,
-  DxRadioGroupModule,
-  DxFileUploaderModule,
-  DxLoadPanelModule,
-  DxPopupModule,
+import {
+  DxAccordionModule,
   DxAutocompleteModule,
-  DxSelectBoxModule,
+  DxBoxModule,
+  DxButtonModule,
   DxCheckBoxModule,
+  DxDataGridModule,
+  DxDropDownBoxModule,
+  DxFileUploaderModule,
+  DxFormModule,
+  DxListModule,
+  DxLoadPanelModule,
+  DxRadioGroupModule,
+  DxPopupModule,
+  DxSelectBoxModule,
+  DxTabPanelModule,
+  DxTemplateModule,
+  DxTreeViewModule,
   DxValidatorModule,
   DxValidationGroupModule,
   DxValidationSummaryModule,
-  DxTabPanelModule,
-  DxDropDownBoxModule,
-  DxTreeViewModule,
-  DxBoxModule} from 'devextreme-angular';
+  } from 'devextreme-angular';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-
-    DxDataGridModule,
-    DxButtonModule,
-    DxFormModule,
-    DxRadioGroupModule,
-    DxFileUploaderModule,
-    DxLoadPanelModule,
-    DxPopupModule,
-    DxAutocompleteModule,
-    DxSelectBoxModule,
-    DxCheckBoxModule,
-    DxValidatorModule,
-    DxValidationGroupModule,
-    DxValidationSummaryModule,
-    DxTabPanelModule,
-    DxDropDownBoxModule,
-    DxTreeViewModule,
-    DxBoxModule
+    FormsModule
   ],
   exports: [
     CommonModule,
     FormsModule,
 
-    DxDataGridModule,
-    DxButtonModule,
-    DxFormModule,
-    DxRadioGroupModule,
-    DxFileUploaderModule,
-    DxLoadPanelModule,
-    DxPopupModule,
+    DxAccordionModule,
     DxAutocompleteModule,
-    DxSelectBoxModule,
+    DxBoxModule,
+    DxButtonModule,
     DxCheckBoxModule,
+    DxDataGridModule,
+    DxDropDownBoxModule,
+    DxFileUploaderModule,
+    DxFormModule,
+    DxListModule,
+    DxLoadPanelModule,
+    DxRadioGroupModule,
+    DxPopupModule,
+    DxSelectBoxModule,
+    DxTabPanelModule,
+    DxTemplateModule,
+    DxTreeViewModule,
     DxValidatorModule,
     DxValidationGroupModule,
-    DxValidationSummaryModule,
-    DxTabPanelModule,
-    DxDropDownBoxModule,
-    DxTreeViewModule,
-    DxBoxModule
+    DxValidationSummaryModule
   ]
 })
 export class DevExtremeModule {}

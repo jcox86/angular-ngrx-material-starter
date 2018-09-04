@@ -7,6 +7,9 @@
       <span>{{ 'slo.title.short' | translate }}</span> <!-- App Title -->
     </div>
     <mat-nav-list> <!-- App Routes -->
+      <a mat-list-item class="environment" *ngIf="!isProd">
+          ****** {{envName | uppercase}} ******
+      </a>
       <a mat-list-item *ngFor="let item of navigationSideMenu" (click)="closeNavigationSide()" routerLinkActive="active" routerLink="{{item.path}}">
         <mat-icon fontSet="fas" fontIcon="fa-{{item.icon}}"></mat-icon>&nbsp;&nbsp;{{ item.name | translate }}
       </a>
@@ -25,7 +28,7 @@
   </mat-sidenav>
 
   <div class="wrapper">
-    <slo-banner [data]="{ 'title': 'WIP', 'message': 'Dev Mode'}" [isVisible]="true"></slo-banner> <!-- SLO Banner Component -->
+    <slo-banner [data]="{ 'title': 'WIP', 'message': 'Dev Mode'}" [isVisible]="false"></slo-banner> <!-- SLO Banner Component -->
     <div class="content" [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.path">
       <router-outlet #o="outlet"></router-outlet> <!-- Context pages here w/ animation -->
     </div>

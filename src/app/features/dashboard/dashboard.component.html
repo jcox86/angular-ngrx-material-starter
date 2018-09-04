@@ -1,13 +1,28 @@
 <div class="background">
-  <div class="gradient">
-    <div class="container">
-      <button mat-button-raised color="primary" (click)="traceService()">TRACE</button>
-      <button mat-button-raised color="primary" (click)="debugService()">DEBUG</button>
-      <button mat-button-raised color="primary" (click)="infoService()">INFO</button>
-      <button mat-button-raised color="primary" (click)="warnService()">WARN</button>
-      <button mat-button-raised color="primary" (click)="errorService()">ERROR</button>
-      <button mat-button-raised color="primary" (click)="callApi()">API</button>
-      <pre>{{logHistory | json}}</pre>
+  <div class="container">
+    <!-- Bootstrap Container widths **Everything goes in here** -->
+
+    <dx-button [text]="buttonOptions.text" [type]="buttonOptions.type" [icon]="buttonOptions.icon" (onClick)="navigateToCreate()"></dx-button>
+    <div class="space-above-20">
+      <dx-data-grid id="gridContainer" [dataSource]="data" [showRowLines]="true" [showBorders]="true" [showColumnLines]="true"
+        [rowAlternationEnabled]="true" [remoteOperations]="false" [allowColumnResizing]="true" [columnResizingMode]="'widget'"
+        height="650" keyExpr="requestID">
+
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 25, 50]" [showInfo]="true" [showNavigationButtons]="true"></dxo-pager>
+        <dxo-filter-row [visible]="showFilterRow" [applyFilter]="currentFilter"></dxo-filter-row>
+        <dxo-header-filter [visible]="showHeaderFilter" [allowSearch]="true"></dxo-header-filter>
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-search-panel [visible]="true" [width]="350" placeholder="Search..."></dxo-search-panel>
+        <dxo-filter-panel [visible]="true" [texts]="{clearFilter: 'Clear & Start Over!'}"></dxo-filter-panel>
+        <dxo-filter-builder-popup [position]="popupPosition"></dxo-filter-builder-popup>
+        <dxo-export [enabled]="true" fileName="Employees" [allowExportSelectedData]="true"></dxo-export>
+        <dxo-selection mode="multiple"></dxo-selection>
+        <dxo-state-storing [enabled]="true" type="localStorage" storageKey="storage"></dxo-state-storing>
+
+      </dx-data-grid>
     </div>
   </div>
 </div>

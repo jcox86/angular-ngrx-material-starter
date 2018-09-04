@@ -21,6 +21,12 @@
       .link {
         color: mat-color($primary, default-contrast);
       }
+
+      .environment {
+        background-color: mat-color($accent, lighter);
+        color: red;
+        padding: 8px;
+      }
     }
   }
 }

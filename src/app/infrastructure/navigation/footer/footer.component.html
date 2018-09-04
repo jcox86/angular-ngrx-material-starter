@@ -1,14 +1,17 @@
 <div class="footer">
   <div class="row">
     <div class="col-12 signature">
-      &#169; <span class="year">{{year}}</span> - County of San Luis Obispo
+      Copyright &#169; <span class="year">{{year}}</span> - <a [matTooltip]="'slo.footer.changelog' | translate"
+      matTooltipPosition="after" target="_blank"
+      href="https://www.slocounty.ca.gov/">County of San Luis Obispo, California</a>
       <br class="d-block d-sm-none">
-      <a [matTooltip]="'slo.footer.changelog' | translate"
-          matTooltipPosition="before"
-          href="https://www.slocounty.ca.gov/">
-        <mat-icon fontSet="fas" fontIcon="fa-rocket"></mat-icon>
-        {{version}} <span *ngIf="!isProd">[{{envName}}]</span>
-      </a>
+      <span class="move-right">
+        <mat-icon fontSet="fas" fontIcon="fa-rocket" *ngIf="!isProd"></mat-icon>
+        {{version}}&nbsp;
+        <span *ngIf="!isProd">
+          <a [matTooltip]="'slo.footer.sourcecontrol' | translate" matTooltipPosition="above" target="_blank" href="{{sourceControl}}">[{{envName}}]</a>
+        </span>
+      </span>
     </div>
   </div>
 </div>

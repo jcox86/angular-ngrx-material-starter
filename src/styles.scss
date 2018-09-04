@@ -6,6 +6,9 @@
 @import '../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-solid';
 @import '../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-brands';
 @import '~ngx-toastr/toastr-bs4-alert';
+@import '../node_modules/devextreme/dist/css/dx.common.css';
+// @import '../node_modules/devextreme/dist/css/dx.material.blue.dark.css';
+@import '../node_modules/devextreme/dist/css/dx.material.blue.light.css';
 
 @import 'styles-reset';
 
@@ -20,7 +23,7 @@
 
 @import 'styles-reset.scss-theme';
 @import 'app/app.component.scss-theme';
-@import 'app/features/about/about.component.scss-theme';
+@import 'app/features/create/create.component.scss-theme';
 @import 'app/features/dashboard/dashboard.component.scss-theme';
 @import 'app/infrastructure/navigation/footer/footer.component.scss-theme';
 @import 'app/infrastructure/navigation/navbar/navbar.component.scss-theme';
@@ -28,8 +31,8 @@
 @mixin custom-components-theme($theme) {
   @include slo-styles-reset-theme($theme);
   @include slo-app-component-theme($theme);
-  @include slo-about-component-theme($theme);
   @include slo-dashboard-component-theme($theme);
+  @include slo-create-component-theme($theme);
   @include slo-footer-component-theme($theme);
   @include slo-navbar-component-theme($theme);
 }

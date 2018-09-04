@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { BannerComponent } from '@app/infrastructure/core/shared/components/banner/banner.component';
 import { SettingsModule } from '@app/infrastructure/core/shared/components/settings/settings.module';
 import { SharedPipesModule } from '@app/infrastructure/core/shared/pipes/pipe.module';
+import { NotificationsModule } from '@app/infrastructure/core/shared/components/notifications/notifications.module';
 
 
 @NgModule({
@@ -13,12 +14,14 @@ import { SharedPipesModule } from '@app/infrastructure/core/shared/pipes/pipe.mo
     CommonModule,
 
     SharedPipesModule,
-    SettingsModule
+    SettingsModule,
+    NotificationsModule
   ],
   declarations: [BannerComponent],
   exports: [
     SettingsModule,
-    BannerComponent
+    BannerComponent,
+    NotificationsModule
   ]
 })
 export class SharedComponentsModule {}

@@ -22,3 +22,25 @@ code {
     left: 4px;
   }
 }
+
+@media (min-width: 1600px) {
+  .container {
+      max-width: 1440px;
+  }
+}
+
+@media (min-width: 1900px) {
+  .container {
+      max-width: 1640px;
+  }
+}
+
+// **************** DEFINE CUSTOM APP STYLES BELOW ********************
+
+.space-above-10 {
+  margin-top: 10px;
+}
+
+.space-above-20 {
+  margin-top: 20px;
+}

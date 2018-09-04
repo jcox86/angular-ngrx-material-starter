@@ -8,6 +8,7 @@ import { routes } from '../../../app-routing.module';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { ActionNavigationSideOpen } from '@app/infrastructure/navigation/navigation.actions';
+import { environment as env } from '@env/environment';
 
 @Component({
   selector: 'slo-navbar',
@@ -18,7 +19,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   // - Fields -
   private unsubscribe$: Subject<void> = new Subject<void>();
   public isAuthenticated$: Observable<boolean>;
-
+  public isProd = env.production;
+  public envName = env.envName;
   public displayName: string;
   public navigation: Array<{
     path: string,

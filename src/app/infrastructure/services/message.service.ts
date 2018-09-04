@@ -2,8 +2,12 @@ import { Injectable, Injector } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { confirm } from 'devextreme/ui/dialog';
+import { alert } from 'devextreme/ui/dialog';
+import { custom } from 'devextreme/ui/dialog';
 
 import { IToast } from '../classes/interfaces/toast';
+import { IDialog } from '@app/infrastructure/classes/interfaces/dialog';
 
 @Injectable()
 export class MessageService {
@@ -36,6 +40,34 @@ export class MessageService {
 
   showToastLoggedOut(params: IToast): Observable<any> {
     return of(this.toastr.error(params.description, params.header));
+  }
+
+  showConfirm(params: IDialog): Promise<boolean> {
+    const confirmation = confirm(params.message || 'Are you sure?', params.title);
+    return confirmation.then((dialogResult) => {
+      return dialogResult;
+    });
+  }
+
+  showAlert(params: IDialog): Promise<void> {
+    const alertBox = alert(params.message, params.title);
+    return alertBox.then();
+  }
+
+  showCustom(params: IDialog): Object {
+    const myDialog = custom({
+      title: params.title,
+      message: params.message,
+      showTitle: params.showTitle,
+      buttons: []
+    });
+    params.buttons.forEach(element => {
+      myDialog.buttons.push(element);
+    });
+    myDialog.show().done(function(dialogResult) {
+        return dialogResult;
+    });
+    return myDialog;
   }
 
   clearToasts(): void {

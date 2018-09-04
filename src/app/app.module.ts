@@ -31,10 +31,10 @@ import { HttpLoaderFactory } from '@app/infrastructure/core';
     BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,
-    
+
     // -- Infrastructure --
     InfrastructureModule,
-    
+
     // -- Features --
     FeaturesModule,
 
