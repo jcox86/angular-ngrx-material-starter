@@ -20,24 +20,16 @@ interface EndpointConfig {
 
 @Injectable()
 export class ApiEndpoint {
-  public url: string = env.apiRoute;
-  public config: EndpointConfig;
-  public getAction;
-  public postAction;
-  public putAction;
-  public deleteAction;
-  public getError;
-  public postError;
-  public putError;
-  public deleteError;
+  protected url: string = env.apiRoute;
+  protected config: EndpointConfig;
 
-  constructor(public http: HttpClient, private log: LogService) { }
+  constructor(private http: HttpClient, private log: LogService) { }
 
-  initialize(config: EndpointConfig) {
+  protected initialize(config: EndpointConfig) {
     this.config = config;
   }
 
-  post(payload: any, paramRoute?, paramHeader?) {
+  protected post(payload: any, paramRoute?, paramHeader?) {
     const headers = this.prepareHeader(paramHeader || this.config.headers.post);
     const route = paramRoute || this.config.route;
 
@@ -62,7 +54,7 @@ export class ApiEndpoint {
     return subscription;
   }
 
-  put(payload: any, paramRoute?, paramHeader?) {
+  protected put(payload: any, paramRoute?, paramHeader?) {
     const headers = this.prepareHeader(paramHeader || this.config.headers.put);
     const route = paramRoute || this.config.route;
 
@@ -87,7 +79,7 @@ export class ApiEndpoint {
     return subscription;
   }
 
-  delete(paramRoute?, paramHeader?) {
+  protected delete(paramRoute?, paramHeader?) {
     const headers = this.prepareHeader(paramHeader || this.config.headers.delete);
     const route = paramRoute || this.config.route;
 
@@ -111,7 +103,7 @@ export class ApiEndpoint {
     return subscription;
   }
 
-  get(paramRoute?, paramHeader?) {
+  protected get(paramRoute?, paramHeader?) {
     const headers = this.prepareHeader(paramHeader || this.config.headers.get);
     const route = paramRoute || this.config.route;
 

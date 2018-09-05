@@ -15,6 +15,6 @@ export class ErrorsHandler implements ErrorHandler {
   handleError(error: Error | HttpErrorResponse) {
      this.logService.error(error); // - Log error into user log
      this.messages.showToastError({header: 'Unexpected Error', description: error.message}); // - Display toast of error
-     this.api.app.logHistory(this.logService.logHistory); // - Send user log history to api
+    //  this.api.log.logHistory(this.logService.logHistory); // - Send user log history to api
   }
 }

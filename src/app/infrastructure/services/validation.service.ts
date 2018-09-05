@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { of, Observable } from 'rxjs';
+
 import { IValidationRules,
          ICurrentControlValidators,
          IValidator,
          IRequiredValidator,
          INumericRangeValidator,
          IMaxLengthValidator,
-         IPatternValidator
+         IPatternValidator,
+         INumericMinValueValidator,
+         INumericMaxValueValidator,
+         IDateMinValueValidator,
+         IDateMaxValueValidator,
+         IDateRangeValidator
       } from '@app/infrastructure/classes/interfaces/validation.models';
 import { ControlValidators } from './control-validators.service';
 import { ApiService } from '@app/infrastructure/core/api/api.service';
-import { of } from 'rxjs';
 
 @Injectable()
 export class ValidationService {
@@ -20,11 +26,7 @@ export class ValidationService {
   constructor(private api: ApiService) { }
 
   // FormGroup is one of the building blocks used in Reactive Forms.
-  // DataService is a parent class from which all our http services inherit.
-  // The dataService instance passed in should be a child class of DataService
-  // and should include an implementation of a method that returns the API URL.
-  applyValidationRules(formGroup: FormGroup) {
-    // const endpoint = this.validationEndpoint(dataService);
+  applyValidationRules(formGroup: FormGroup): Observable<any> {
     return of(() => {
       this.api.validation.getValidationRules().subscribe(rules => {
           this.addRulesToControls(formGroup, rules);
@@ -32,8 +34,7 @@ export class ValidationService {
     });
   }
 
-  // This method is called after successfully receiving the JSON containing the
-  // rules for this form.
+  // This method is called after successfully receiving the JSON containing the rules for this form.
   private addRulesToControls(formGroup: FormGroup, validationRules: IValidationRules) {
     const controlValidators = [];
     if (validationRules && validationRules.properties) {
@@ -64,6 +65,18 @@ export class ValidationService {
           validatorArray.push(ControlValidators.requiredValidator(
             (rule as IRequiredValidator).requiredValidator.errorMessage));
           break;
+        case 'numericMinValueValidator':
+          validatorArray.push(ControlValidators.minValueValidator(
+            (rule as INumericMinValueValidator).numericMinValueValidator.minValue,
+            (rule as INumericMinValueValidator).numericMinValueValidator.inclusive,
+            (rule as INumericMinValueValidator).numericMinValueValidator.errorMessage));
+          break;
+        case 'numericMaxValueValidator':
+          validatorArray.push(ControlValidators.maxValueValidator(
+            (rule as INumericMaxValueValidator).numericMaxValueValidator.maxValue,
+            (rule as INumericMaxValueValidator).numericMaxValueValidator.inclusive,
+            (rule as INumericMaxValueValidator).numericMaxValueValidator.errorMessage));
+          break;
         case 'numericRangeValidator':
           validatorArray.push(ControlValidators.numericRangeValidator(
             (rule as INumericRangeValidator).numericRangeValidator));
@@ -72,6 +85,20 @@ export class ValidationService {
           validatorArray.push(ControlValidators.maxLengthValidator(
             (rule as IMaxLengthValidator).maxLengthValidator.maxLength,
             (rule as IMaxLengthValidator).maxLengthValidator.errorMessage));
+          break;
+        case 'dateMinValueValidator':
+          validatorArray.push(ControlValidators.minDateValidator(
+            (rule as IDateMinValueValidator).dateMinValueValidator.minDate,
+            (rule as IDateMinValueValidator).dateMinValueValidator.errorMessage));
+          break;
+        case 'dateMaxValueValidator':
+          validatorArray.push(ControlValidators.maxDateValidator(
+            (rule as IDateMaxValueValidator).dateMaxValueValidator.maxDate,
+            (rule as IDateMaxValueValidator).dateMaxValueValidator.errorMessage));
+          break;
+        case 'dateRangeValidator':
+          validatorArray.push(ControlValidators.dateRangeValidator(
+            (rule as IDateRangeValidator).dateRangeValidator));
           break;
         case 'patternValidator':
           validatorArray.push(ControlValidators.patternValidator(

@@ -3,9 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ApiEndpoint } from '../api-endpoint';
+import { ApiEndpoint } from '../../api-endpoint';
 import { User } from '@app/infrastructure/classes/models/user'; // - Import your class objects to be mapped
-import { ILog } from '@app/infrastructure/classes/interfaces/log';
 
 @Injectable()
 export class ApiAppService extends ApiEndpoint {
@@ -23,9 +22,5 @@ export class ApiAppService extends ApiEndpoint {
         return adusers as User; // - Return cast of object to the Observable
       })
     );
-  }
-
-  logHistory(logs: ILog[]) {
-    return this.post(logs, `${this.config.route}/log`);
   }
 }

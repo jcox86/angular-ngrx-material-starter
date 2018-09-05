@@ -23,9 +23,18 @@
       {{ 'slo.menu.login' | translate }}
     </button>
 
-    <button mat-icon-button *ngIf="(isAuthenticated$ | async)" routerLink="notifications" class="d-none d-sm-inline">
+    <button mat-icon-button *ngIf="(isAuthenticated$ | async)" [matMenuTriggerFor]="menu" class="d-none d-sm-inline">
       <mat-icon fontSet="fas" fontIcon="fa-bell"></mat-icon>
     </button>
+
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <span mat-menu-item *ngFor="let note of (recentNotifications$ | async)">
+        {{note.message | truncate : 50 : true }}
+      </span>
+      <button class="center" mat-menu-item routerLink="notifications">
+        <span style="text-decoration: underline">View all Notifications</span>
+      </button>
+    </mat-menu>
 
     <button mat-icon-button *ngIf="(isAuthenticated$ | async)" routerLink="settings" class="d-none d-sm-inline">
       <mat-icon fontSet="fas" fontIcon="fa-cog"></mat-icon>

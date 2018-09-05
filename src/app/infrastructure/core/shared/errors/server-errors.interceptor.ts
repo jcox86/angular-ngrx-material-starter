@@ -23,8 +23,8 @@ export class ServerErrorsInterceptor implements HttpInterceptor {
     request = this.addAuth(request);
 
     return next.handle(request).pipe(
-      delay(500),
-      retry(1),
+      // delay(500),
+      // retry(1),
       catchError(
         (error) => {
           return of(this.handleHttpError(error));
@@ -34,7 +34,7 @@ export class ServerErrorsInterceptor implements HttpInterceptor {
   }
 
   private handleHttpError(err: HttpErrorResponse) {
-    if (err.status === 404 && err.url.indexOf('auth/log') > -1) {
+    if (err.status === 404 && err.url.indexOf('/log') > -1) {
       this.log.error(err); // - Log error into user log
       this.messages.showToastError({header: 'Log Service Down', description: err.message}); // - Display toast of error
     } else {

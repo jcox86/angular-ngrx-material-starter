@@ -33,6 +33,7 @@ export interface INumericMinValueValidator extends IValidator {
   type: 'numericMinValueValidator';
   numericMinValueValidator: {
     minValue: number,
+    inclusive: boolean,
     errorMessage: string
   };
 }
@@ -41,6 +42,7 @@ export interface INumericMaxValueValidator extends IValidator {
   type: 'numericMaxValueValidator';
   numericMaxValueValidator: {
     maxValue: number,
+    inclusive: boolean,
     errorMessage: string
   };
 }
@@ -82,8 +84,8 @@ export interface IDateMaxValueValidator extends IValidator {
 export interface IDateRangeValidator extends IValidator {
   type: 'dateRangeValidator';
   dateRangeValidator: {
-    minDate: number,
-    maxDate: number,
+    minDate: Date,
+    maxDate: Date,
     inclusive: boolean,
     errorMessage: string
   };

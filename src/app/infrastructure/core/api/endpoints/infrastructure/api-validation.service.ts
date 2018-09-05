@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ApiEndpoint } from '../api-endpoint';
+import { ApiEndpoint } from '../../api-endpoint';
 import { IValidationRules } from '@app/infrastructure/classes/interfaces/validation.models';
 
 @Injectable()
 export class ApiValidationService extends ApiEndpoint {
-  public config = { // - Setup config object at top
+  config = { // - Setup config object at top
     route: '/validation/rules', // - Set route for each 'endpoint' to talk to
     headers: {
       get: 'none', // - Set which REST calls get which headers by default (override in method)

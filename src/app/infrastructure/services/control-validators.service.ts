@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
-import { filter } from 'rxjs/operators';
-
-import { environment as env } from '@env/environment';
-
 @Injectable()
 export class ControlValidators {
   static requiredValidator = (errorMessage: string) => {
@@ -63,6 +59,48 @@ export class ControlValidators {
     return (control: AbstractControl) => {
       if (control.value && control.value.length > maxLength) {
         return { maxLengthValidator: errorMessage };
+      }
+      return null;
+    };
+  }
+
+  static minDateValidator = (minDate: Date, errorMessage: string) => {
+    return (control: AbstractControl) => {
+      if (control && control.value === null) {
+        return null;
+      }
+      if (new Date(control.value) < minDate) {
+        return { minDateValidator: errorMessage };
+      }
+      return null;
+    };
+  }
+
+  static maxDateValidator = (maxDate: Date, errorMessage: string) => {
+    return (control: AbstractControl) => {
+      if (control && control.value === null) {
+        return null;
+      }
+      if (new Date(control.value) > maxDate) {
+        return { maxDateValidator: errorMessage };
+      }
+      return null;
+    };
+  }
+
+  static dateRangeValidator = (range: {
+      minDate: Date,
+      maxDate: Date,
+      inclusive?: boolean,
+      errorMessage?: string
+    }) => {
+    return (control: AbstractControl) => {
+      if (control.value === null) {
+        return null;
+      }
+      const date = new Date(control.value);
+      if (!(date <= range.maxDate && date >= range.minDate) || (!range.inclusive && (date === range.maxDate || date === range.minDate))) {
+        return { dateRangeValidator: range.errorMessage };
       }
       return null;
     };

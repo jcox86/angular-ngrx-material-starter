@@ -1,14 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SafeHtmlPipe } from './safe-html.pipe';
+import { SafeHtmlPipe } from '@app/infrastructure/core/shared/pipes/safe-html.pipe';
+import { TruncatePipe } from '@app/infrastructure/core/shared/pipes/truncate.pipe';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  exports: [SafeHtmlPipe],
-  declarations: [SafeHtmlPipe],
+  exports: [
+    SafeHtmlPipe,
+    TruncatePipe
+  ],
+  declarations: [
+    SafeHtmlPipe,
+    TruncatePipe
+  ],
   providers: []
 })
 export class SharedPipesModule {

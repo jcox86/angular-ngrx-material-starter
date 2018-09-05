@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { ApiService } from '@app/infrastructure/core/api/api.service';
@@ -12,14 +12,20 @@ import { NotificationItem } from '@app/infrastructure/classes/interfaces/notific
 })
 export class NotificationsContainerComponent implements OnInit, OnDestroy {
   private unsubscribe$: Subject<void> = new Subject<void>();
-  notifications: NotificationItem[];
+  notifications$: Observable<NotificationItem[]>;
 
   constructor(private api: ApiService) { }
 
-  ngOnInit() {} // TODO: Get Notifications from API service
+  ngOnInit() {
+    this.subscribeToNotifications();
+  }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  private subscribeToNotifications() {
+    this.notifications$ = this.api.notification.getAllNotifications('user').pipe(takeUntil(this.unsubscribe$));
   }
 }

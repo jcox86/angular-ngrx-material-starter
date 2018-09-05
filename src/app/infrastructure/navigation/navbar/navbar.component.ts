@@ -3,12 +3,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActionAuthLogin, ActionAuthLogout, selectAuth, AppState } from '@app/infrastructure/core';
 
 import { Store, select } from '@ngrx/store';
-
-import { routes } from '../../../app-routing.module';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
-import { ActionNavigationSideOpen } from '@app/infrastructure/navigation/navigation.actions';
+
 import { environment as env } from '@env/environment';
+import { routes } from '../../../app-routing.module';
+import { ActionNavigationSideOpen } from '@app/infrastructure/navigation/navigation.actions';
+import { NotificationItem } from '@app/infrastructure/classes/interfaces/notification';
+import { ApiService } from '@app/infrastructure/core/api/api.service';
 
 @Component({
   selector: 'slo-navbar',
@@ -22,6 +24,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public isProd = env.production;
   public envName = env.envName;
   public displayName: string;
+  public recentNotifications$: Observable<NotificationItem[]>;
   public navigation: Array<{
     path: string,
     name: string,
@@ -29,7 +32,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }> = [];
 
   // - Ctor -
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private api: ApiService) {
     for (const route of routes) {
       if (route.path && route.data && route.path.indexOf('*') === -1 && route.data.show) {
         this.navigation.push({
@@ -44,6 +47,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   // - OnInit -
   ngOnInit() {
     this.subscribeToIsAuthenticated();
+    this.subscribeToRecentNotifications();
   }
 
   ngOnDestroy(): void {
@@ -57,6 +61,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
       select(selectAuth),
       map(auth => auth.isAuthenticated),
       takeUntil(this.unsubscribe$));
+  }
+
+  private subscribeToRecentNotifications() {
+    this.recentNotifications$ = this.api.notification.getRecentNotifications('user').pipe(takeUntil(this.unsubscribe$));
   }
 
   openNavigationSide() {
