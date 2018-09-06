@@ -1,5 +1,5 @@
 import { NgModule, Injectable } from '@angular/core';
-import { SharedModule } from '@app/infrastructure/core/shared/shared.module';
+// import { SharedModule } from '@app/infrastructure/core/shared/shared.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import {
@@ -41,14 +41,12 @@ export function provideMockStore() {
   imports: [
     NoopAnimationsModule,
     RouterTestingModule,
-    SharedModule,
     TranslateModule.forRoot(),
     StoreModule.forRoot({})
   ],
   exports: [
     NoopAnimationsModule,
     RouterTestingModule,
-    SharedModule,
     TranslateModule
   ],
   providers: [provideMockStore()]

@@ -2,10 +2,11 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { SharedModule } from '@app/shared';
-import { CoreModule } from '@app/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { FeaturesModule } from '@app/features/features.module';
+import { InfrastructureModule } from '@app/infrastructure/infrastructure.module';
 
 describe('AppComponent', () => {
   beforeEach(
@@ -14,10 +15,11 @@ describe('AppComponent', () => {
         imports: [
           NoopAnimationsModule,
           RouterTestingModule,
-          SharedModule,
-          CoreModule
+          FeaturesModule,
+          InfrastructureModule
         ],
-        declarations: [AppComponent]
+        declarations: [AppComponent],
+        schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
       }).compileComponents();
     })
   );

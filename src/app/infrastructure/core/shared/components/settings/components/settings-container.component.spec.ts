@@ -9,7 +9,6 @@ import { SettingsContainerComponent } from './settings-container.component';
 import {
   ActionSettingsChangeAnimationsElements,
   ActionSettingsChangeAnimationsPage,
-  ActionSettingsChangeAutoNightMode,
   ActionSettingsChangeTheme
 } from '../settings.actions';
 
@@ -51,7 +50,6 @@ describe('SettingsComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
     expect(component.settings.theme).toBe('DEFAULT-THEME');
-    expect(component.settings.autoNightMode).toBeTruthy();
     expect(component.settings.pageAnimations).toBeTruthy();
   });
 
@@ -80,9 +78,6 @@ describe('SettingsComponent', () => {
     fixture.detectChanges();
 
     expect(dispatchSpy).toHaveBeenCalledTimes(2);
-    expect(dispatchSpy).toHaveBeenCalledWith(
-      new ActionSettingsChangeAutoNightMode({ autoNightMode: false })
-    );
   });
 
   it('should dispatch change animations page', () => {

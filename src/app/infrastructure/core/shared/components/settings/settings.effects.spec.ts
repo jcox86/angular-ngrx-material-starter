@@ -5,12 +5,10 @@ import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { cold } from 'jasmine-marbles';
 
-import { AnimationsService, LocalStorageService } from '@app/core';
+import { AnimationsService } from '@app/infrastructure/core/animations/animations.service';
+import { LocalStorageService } from '@app/infrastructure/core/local-storage/local-storage.service';
 
-import {
-  ActionSettingsChangeLanguage,
-  ActionSettingsPersist
-} from './settings.actions';
+import { ActionSettingsPersist } from './settings.actions';
 import { SETTINGS_KEY, SettingsEffects } from './settings.effects';
 import { SettingsState } from './settings.model';
 
@@ -55,7 +53,6 @@ describe('SettingsEffects', () => {
       pageAnimations: true,
       elementsAnimations: true,
       theme: 'default',
-      autoNightMode: false,
       pageAnimationsDisabled: true
     };
 
@@ -74,11 +71,6 @@ describe('SettingsEffects', () => {
   });
 
   it('should not call methods on AnimationsService and LocalStorageService for other actions', () => {
-    const nonPersistAction: ActionSettingsChangeLanguage = new ActionSettingsChangeLanguage(
-      { language: 'en' }
-    );
-
-    actions$ = cold('a-|', { a: nonPersistAction });
     effects.persistSettings().subscribe(undefined, undefined, () => {
       expect(localStorageService.setItem).not.toHaveBeenCalled();
       expect(animationsService.updateRouteAnimationType).not.toHaveBeenCalled();

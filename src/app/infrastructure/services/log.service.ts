@@ -8,10 +8,20 @@ import * as moment from 'moment';
 import { environment as env } from '@env/environment';
 import { ILog, Log } from '@app/infrastructure/classes/interfaces/log';
 
+enum LogLevel {
+  TRACE = 'TRACE',
+  DEBUG = 'DEBUG',
+  INFO = 'INFO',
+  WARN = 'WARN',
+  ERROR = 'ERROR',
+  OFF = 'OFF'
+}
+
 @Injectable()
 export class LogService {
   public logHistory: Log[] = []; // TODO: Keep this in the store
   private logLimit: Number = 20; // TODO: Get from DB and keep in store
+  private logLevel: LogLevel;
 
   constructor(private log: NGXLogger,
               private injector: Injector) { } // TODO: Bring in store here
@@ -54,22 +64,22 @@ export class LogService {
 
     switch (level) {
       case NgxLoggerLevel.TRACE:
-        logToSend.level = loglevel.TRACE;
+        logToSend.level = LogLevel.TRACE;
         break;
       case NgxLoggerLevel.DEBUG:
-        logToSend.level = loglevel.DEBUG;
+        logToSend.level = LogLevel.DEBUG;
         break;
       case NgxLoggerLevel.INFO:
-        logToSend.level = loglevel.INFO;
+        logToSend.level = LogLevel.INFO;
         break;
       case NgxLoggerLevel.WARN:
-        logToSend.level = loglevel.WARN;
+        logToSend.level = LogLevel.WARN;
         break;
       case NgxLoggerLevel.ERROR:
-        logToSend.level = loglevel.ERROR;
+        logToSend.level = LogLevel.ERROR;
         break;
       case NgxLoggerLevel.OFF:
-        logToSend.level = loglevel.OFF;
+        logToSend.level = LogLevel.OFF;
         break;
       default:
         break;
@@ -98,13 +108,4 @@ export class LogService {
     this.logHistory.push(item);
     // this.store.update(this.userLog); // TODO: Update store with new user log
   }
-}
-
-enum loglevel {
-  TRACE = 'TRACE',
-  DEBUG = 'DEBUG',
-  INFO = 'INFO',
-  WARN = 'WARN',
-  ERROR = 'ERROR',
-  OFF = 'OFF'
 }

@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { TestingModule } from '@testing/utils';
 
 import { CreateComponent } from './create.component';
 
-describe('AboutComponent', () => {
+describe('CreateComponent', () => {
   let component: CreateComponent;
   let fixture: ComponentFixture<CreateComponent>;
 
@@ -12,7 +13,8 @@ describe('AboutComponent', () => {
     async(() => {
       TestBed.configureTestingModule({
         imports: [TestingModule],
-        declarations: [CreateComponent]
+        declarations: [CreateComponent],
+        schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
       }).compileComponents();
     })
   );
